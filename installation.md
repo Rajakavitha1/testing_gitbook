@@ -8,7 +8,7 @@ cluster using [kind](https://kubernetes.io/docs/tasks/tools/#kind), [minikube](h
 * Deploy a Kubernetes cluster that is running version 1.23 or later.
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl), the Kubernetes command-line tool.
 * Install [Helm](https://helm.sh/docs/intro/install/), the package manager for Kubernetes.
-* Seldon Enterprise Platform license key. You can reach out to Seldon Support team to get a trail license key. 
+* Seldon Enterprise Platform license key. You can reach out to Seldon [support team](https://www.seldon.io/contact) to get a trail license key. 
 
 ### Installating Seldon Enterprise Platform on a Kubernetes cluster
 
@@ -96,7 +96,7 @@ To deploy Seldon Enterprise Platform:
      export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
      ```
 
-1. You can use port-forwarding to access your application:
+1. You can use port-forwarding to access your application.
    ```bash
    kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
    ```
