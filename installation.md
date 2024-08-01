@@ -3,7 +3,6 @@
 You can deploy Seldon Enterprise Platform on your local computer thats is running a Kubernetes
 cluster using `kind`, `minikube` or others.
 
-This is a test
 ## Prerequisites
 
 * Deploy a Kubernetes cluster that is running version 1.23 or later.
