@@ -74,19 +74,20 @@ To deploy Seldon Enterprise Platform:
      export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
      echo "Visit http://127.0.0.1:8000/seldon-deploy/ to use your application"
      kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
-  ```
-1. Check the status of the deployment `seldon-enterprise-seldon-deploy`.
-   ```bash
-   kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system 
    ```
-   When the deployment is complete you should see this:
-   ``bash
-   deployment "seldon-enterprise-seldon-deploy" successfully rolled out
-   ```
-1. Get the Pod that is running in the deployment in the clsuter and save it as `$POD_NAME`.
-   ```bash
-   export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
-   ```
+ 1. Check the status of the deployment `seldon-enterprise-seldon-deploy`.
+     ```bash
+     kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
+    ```
+
+    When the deployment is complete you should see this:
+    ```bash
+    deployment "seldon-enterprise-seldon-deploy" successfully rolled out
+    ```
+  1. Get the Pod that is running in the deployment in the clsuter and save it as `$POD_NAME`.
+     ```bash
+     export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
+     ```
 1. You can use port-forwarding to access your application:
    ```bash
    kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
