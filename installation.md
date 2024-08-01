@@ -95,8 +95,6 @@ To deploy Seldon Enterprise Platform:
 
    ![Seldon Enterprise Platform](sep-welcome-page.png "Seldon Enperprise Platform Welcome Page")
 
-1.    
-
 ## Additional Resources
 
 * Seldon Core Documentation
