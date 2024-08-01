@@ -1,4 +1,4 @@
-# Instalation of Seldon Enterprise Platform 
+# Installation of Seldon Enterprise Platform 
 
 You can deploy Seldon Enterprise Platform on your local computer thats is running a Kubernetes
 cluster using [kind](https://kubernetes.io/docs/tasks/tools/#kind), [minikube](https://kubernetes.io/docs/tasks/tools/#minikube) or others.
