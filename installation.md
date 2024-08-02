@@ -30,7 +30,7 @@ To deploy Seldon Enterprise Platform:
    helm repo update seldon-charts
    ```
 
-1. Create the `deploy-values` YAML file that specifies these initial configuration using an editor of your choice and save the file:
+1. Create the `deploy-values` YAML file to specify the initial configuration. Use your preferred text editor to create and save the file with the following content:
    ```yaml
    image:
      image: seldonio/seldon-deploy-server:2.3.1
