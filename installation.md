@@ -109,10 +109,10 @@ To deploy Seldon Enterprise Platform:
 
 * Seldon Core Documentation
 * Seldon Enterprise Documentation
-* KIND Documentation
+
 
 [kind-docs]: https://kubernetes.io/docs/tasks/tools/#kind
 [minikube-docs]: https://kubernetes.io/docs/tasks/tools/#minikube
 [kubectl-docs]: https://kubernetes.io/docs/tasks/tools/#kubectl
 [helm-docs]: https://helm.sh/docs/intro/install/
-[conntact]: https://www.seldon.io/contact 
+[contact]: https://www.seldon.io/contact 
