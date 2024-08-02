@@ -1,14 +1,14 @@
 # Installation of Seldon Enterprise Platform 
 
 You can deploy Seldon Enterprise Platform on your local computer that is running a Kubernetes
-cluster using [kind](https://kubernetes.io/docs/tasks/tools/#kind), [minikube](https://kubernetes.io/docs/tasks/tools/#minikube) or others.
+cluster using [kind][kind-docs], [minikube][minikube-docs] or others.
 
 ## Prerequisites
 
 * Deploy a Kubernetes cluster that is running version 1.23 or later.
-* Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl), the Kubernetes command-line tool.
-* Install [Helm](https://helm.sh/docs/intro/install/), the package manager for Kubernetes.
-* Seldon Enterprise Platform license key. You can reach out to Seldon [support team](https://www.seldon.io/contact) to get a trail license key. 
+* Install [kubectl][kubectl-docs], the Kubernetes command-line tool.
+* Install [Helm][helm-docs], the package manager for Kubernetes.
+* Seldon Enterprise Platform license key. You can reach out to Seldon [support team][contact] to get a trail license key. 
 
 ### Installating Seldon Enterprise Platform on a Kubernetes cluster
 
@@ -110,3 +110,9 @@ To deploy Seldon Enterprise Platform:
 * Seldon Core Documentation
 * Seldon Enterprise Documentation
 * KIND Documentation
+
+[kind-docs]: https://kubernetes.io/docs/tasks/tools/#kind
+[minikube-docs]: https://kubernetes.io/docs/tasks/tools/#minikube
+[kubectl-docs]: https://kubernetes.io/docs/tasks/tools/#kubectl
+[helm-docs]: https://helm.sh/docs/intro/install/
+[conntact]: https://www.seldon.io/contact 
