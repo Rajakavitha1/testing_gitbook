@@ -18,12 +18,12 @@ cluster using [kind][kind-docs], or [minikube][minikube-docs].
 
 To deploy Seldon Enterprise Platform:
 
-1. Create the namespace `seldon-system` to contain the main components of Seldon.
+1. Create a namespace to contain the main components of Seldon. For example, create the namespace `seldon-system`:
    ```bash
    kubectl create ns seldon-system || echo "Namespace seldon-system already exists"
    ```
 
-1. Create the namespace `seldon-logs` to contain the components related to request logging.
+1. Create a namespace to contain the components related to request logging. For example, create the namespace `seldon-logs`:
    ```bash
    kubectl create ns seldon-logs || echo "Namespace seldon-logs already exists"
    ```
@@ -34,7 +34,7 @@ To deploy Seldon Enterprise Platform:
    helm repo update seldon-charts
    ```
 
-1. Create the `deploy-values` YAML file to specify the initial configuration. Use your preferred text editor to create and save the file with the following content:
+1. Create a YAML file to specify the initial configuration. For example, create the `deploy-values` file. Use your preferred text editor to create and save the file with the following content:
    ```yaml
    image:
      image: seldonio/seldon-deploy-server:2.3.1
@@ -65,7 +65,7 @@ To deploy Seldon Enterprise Platform:
      enabled: false
    ```
 
-1. Ensure that you are in the directory that contains the `deploy-values.yaml` file and then deploy Seldon Enperprise Platform in the name space `seldon-system`.
+1. Ensure that you are in the directory that contains the `deploy-values.yaml` file and then deploy Seldon Enperprise Platform in the namespace `seldon-system`.
    ```bash
    helm install seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f deploy-values.yaml --version 2.3.1
    ```
@@ -95,7 +95,7 @@ To deploy Seldon Enterprise Platform:
     deployment "seldon-enterprise-seldon-deploy" successfully rolled out
     ```
 
-  1. Get the Pod that is running in the deployment in the clsuter and save it as `$POD_NAME`.
+  1. Get the Pod that is running in the deployment in the cluster and save it as `$POD_NAME`.
      ```bash
      export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
      ```
