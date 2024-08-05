@@ -4,7 +4,7 @@ You can deploy Seldon Enterprise Platform on your local computer that is running
 cluster using [kind][kind-docs], or [minikube][minikube-docs].
  
 {% hint style="info" %}
-**Note**: These instructions are designed for deploying the Seldon Enterprise Platform on a local Kubernetes cluster, with an emphasis on ease of learning. For deploying Seldon Enterprise Platform in a production environment, see [cluster requirements][cluster-requirements].
+**Note**: These instructions are for deploying the Seldon Enterprise Platform on a local Kubernetes cluster, with an emphasis on ease of learning. For deploying Seldon Enterprise Platform in a production environment, see [cluster requirements][cluster-requirements].
 {% endhint %}  
 
 ## Prerequisites
