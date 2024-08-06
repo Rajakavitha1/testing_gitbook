@@ -40,7 +40,10 @@ To deploy Seldon Enterprise Platform:
      image: seldonio/seldon-deploy-server:2.3.1
    
    rbac:
-     clusterWide: true
+    opa:
+      enabled:  false
+    nsLabelsAuth:
+      enabled:  true
    
    virtualService:
      create: false
@@ -62,7 +65,7 @@ To deploy Seldon Enterprise Platform:
      knativeEnabled: false
    
    seldonCoreV2:
-     enabled: false
+     enabled: true
    ```
 
 1. Ensure that you are in the directory that contains the `deploy-values.yaml` file and then deploy Seldon Enperprise Platform in the namespace `seldon-system`.
