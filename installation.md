@@ -18,26 +18,28 @@ cluster using [kind][kind-docs], or [minikube][minikube-docs].
 
 To deploy Seldon Enterprise Platform:
 
-1. Create a namespace to contain the main components of Seldon. For example, create the namespace `seldon-system`:
-   ```bash
-   kubectl create ns seldon-system || echo "Namespace seldon-system already exists"
-   ```
+1. Create Namespaces:
+   * Create a namespace to contain the main components of Seldon. For example, create the namespace `seldon-system`:
+     ```bash
+     kubectl create ns seldon-system || echo "Namespace seldon-system already exists"
+     ```
 
-1. Create a namespace to contain the components related to request logging. For example, create the namespace `seldon-logs`:
-   ```bash
-   kubectl create ns seldon-logs || echo "Namespace seldon-logs already exists"
-   ```
-1. Create a namespace that is accessible by Seldon Enterprise Platform. For example, create the namespace `seldon`:
-   ```bash
-   kubectl create ns seldon || echo "Namespace seldon already exists"
-   ```
+   * Create a namespace to contain the components related to request logging. For example, create the namespace `seldon-logs`:
+     ```bash
+     kubectl create ns seldon-logs || echo "Namespace seldon-logs already exists"
+     ```
 
-1. Annotate the namespace `seldon` so that it is accessible in the Seldon Enterprise Platform UI:
-   ```bash
-   kubectl label ns seldon seldon.restricted=false --overwrite=true
-   ``` 
+   * Create a namespace that is accessible by Seldon Enterprise Platform. For example, create the namespace `seldon`:
+     ```bash
+     kubectl create ns seldon || echo "Namespace seldon already exists"
+     ```
 
-1. Add the Helm charts `seldon-charts` to the repository and update it.
+   * Annotate the namespace `seldon` so that it is accessible in the Seldon Enterprise Platform UI:
+     ```bash
+     kubectl label ns seldon seldon.restricted=false --overwrite=true
+     ``` 
+
+1. Add and update the Helm charts `seldon-charts` to the repository.
    ```bash
    helm repo add seldon-charts https://seldonio.github.io/helm-charts/
    helm repo update seldon-charts
