@@ -76,9 +76,9 @@ To deploy Seldon Enterprise Platform:
    seldonCoreV2:
      enabled: true
    ```
-  {% hint style="info" %}
+   {% hint style="info" %}
    **Note**: These configurations do not enable features such as Request logging and GitOps.
-  {% endhint %}  
+   {% endhint %}  
 
 1. Ensure that you are in the directory that contains the `deploy-values.yaml` file and then deploy Seldon Enperprise Platform in the namespace `seldon-system`.
    ```bash
