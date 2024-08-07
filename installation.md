@@ -9,7 +9,7 @@ cluster using [kind][kind-docs], or [minikube][minikube-docs].
 
 ## Prerequisites
 
-* Deploy a Kubernetes cluster that is running version 1.23 or later.
+* Install a Kubernetes cluster that is running version 1.23 or later.
 * Install [kubectl][kubectl-docs], the Kubernetes command-line tool.
 * Install [Helm][helm-docs], the package manager for Kubernetes.
 * Seldon Enterprise Platform license key. You can reach out to Seldon [support team][contact] to get a trial license key. 
