@@ -33,7 +33,7 @@ To deploy Seldon Enterprise Platform:
    ```
 
 1. Annotate the namespace `seldon` so that it is accessible:
-  ```bash
+   ```bash
    kubectl label ns seldon seldon.restricted=false --overwrite=true
    ``` 
 
