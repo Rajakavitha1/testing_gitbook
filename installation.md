@@ -27,6 +27,15 @@ To deploy Seldon Enterprise Platform:
    ```bash
    kubectl create ns seldon-logs || echo "Namespace seldon-logs already exists"
    ```
+1. Create a namespace that is accessible by Seldon Enterprise Platform. For example, create the namespace `seldon`:
+   ```bash
+   kubectl create ns seldon || echo "Namespace seldon already exists"
+   ```
+
+1. Annotate the namespace `seldon` so that it is accessible:
+  ```bash
+   kubectl label ns seldon seldon.restricted=false --overwrite=true
+   ``` 
 
 1. Add the Helm charts `seldon-charts` to the repository and update it.
    ```bash
