@@ -1,10 +1,10 @@
 # Installation of Seldon Enterprise Platform 
 
-You can deploy Seldon Enterprise Platform on your local computer that is running a Kubernetes
+You can install Seldon Enterprise Platform on your local computer that is running a Kubernetes
 cluster using [kind][kind-docs], or [minikube][minikube-docs].
  
 {% hint style="info" %}
-**Note**: These instructions are for deploying the Seldon Enterprise Platform on a local Kubernetes cluster, with an emphasis on ease of learning. For deploying Seldon Enterprise Platform in a production environment, see [cluster requirements][cluster-requirements].
+**Note**: These instructions are for installing the Seldon Enterprise Platform on a local Kubernetes cluster, with an emphasis on ease of learning. For installing Seldon Enterprise Platform in a production environment, see [cluster requirements][cluster-requirements].
 {% endhint %}  
 
 ## Prerequisites
@@ -16,7 +16,7 @@ cluster using [kind][kind-docs], or [minikube][minikube-docs].
 
 ### Installating Seldon Enterprise Platform on a Kubernetes cluster
 
-To deploy Seldon Enterprise Platform:
+To install Seldon Enterprise Platform:
 
 1. Create Namespaces:
    * Create a namespace to contain the main components of Seldon. For example, create the namespace `seldon-system`:
@@ -45,7 +45,7 @@ To deploy Seldon Enterprise Platform:
    helm repo update seldon-charts
    ```
 
-1. Create a YAML file to specify the initial configuration. For example, create the `deploy-values` file. Use your preferred text editor to create and save the file with the following content:
+1. Create a YAML file to specify the initial configuration. For example, create the `install-values` file. Use your preferred text editor to create and save the file with the following content:
    ```yaml
    image:
      image: seldonio/seldon-deploy-server:2.3.1
@@ -83,12 +83,12 @@ To deploy Seldon Enterprise Platform:
     **Note**: These configurations do not enable features such as Request logging and GitOps.
     {% endhint %}  
 
-1. Ensure that you are in the directory that contains the `deploy-values.yaml` file and then deploy Seldon Enperprise Platform in the namespace `seldon-system`.
+1. Change to the directory that contains the `install-values.yaml` file and then install Seldon Enterprise Platform in the namespace `seldon-system`.
    ```bash
-   helm install seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f deploy-values.yaml --version 2.3.1
+   helm install seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f install-values.yaml --version 2.3.1
    ```
 
-   When the deployment is successful, you should see this:
+   When the installation is successful, you should see this:
 
    ```bash
    NAME: seldon-enterprise
@@ -103,17 +103,17 @@ To deploy Seldon Enterprise Platform:
      kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
    ```
 
- 1. Check the status of the deployment `seldon-enterprise-seldon-deploy`.
+ 1. Check the status of the installation `seldon-enterprise-seldon-deploy`.
      ```bash
      kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
     ```
 
-    When the deployment is complete you should see this:
+    When the installation is complete you should see this:
     ```bash
     deployment "seldon-enterprise-seldon-deploy" successfully rolled out
     ```
 
-  1. Get the Pod that is running in the deployment in the cluster and save it as `$POD_NAME`.
+  1. Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
      ```bash
      export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
      ```
@@ -126,6 +126,9 @@ To deploy Seldon Enterprise Platform:
 1. Open your browser and navigate to  `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
 
    ![Seldon Enterprise Platform](sep-welcome-page.png "Seldon Enperprise Platform Welcome Page")
+
+1. Apply the trial license and click **Activate**.  
+
 
 ## Additional Resources
 
