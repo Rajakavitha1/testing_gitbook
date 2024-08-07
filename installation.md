@@ -12,7 +12,7 @@ cluster using [kind][kind-docs], or [minikube][minikube-docs].
 * Deploy a Kubernetes cluster that is running version 1.23 or later.
 * Install [kubectl][kubectl-docs], the Kubernetes command-line tool.
 * Install [Helm][helm-docs], the package manager for Kubernetes.
-* Seldon Enterprise Platform license key. You can reach out to Seldon [support team][contact] to get a trail license key. 
+* Seldon Enterprise Platform license key. You can reach out to Seldon [support team][contact] to get a trial license key. 
 
 ### Installating Seldon Enterprise Platform on a Kubernetes cluster
 
@@ -78,9 +78,10 @@ To deploy Seldon Enterprise Platform:
    seldonCoreV2:
      enabled: true
    ```
-   {% hint style="info" %}
-   **Note**: These configurations do not enable features such as Request logging and GitOps.
-   {% endhint %}  
+
+    {% hint style="info" %}
+    **Note**: These configurations do not enable features such as Request logging and GitOps.
+    {% endhint %}  
 
 1. Ensure that you are in the directory that contains the `deploy-values.yaml` file and then deploy Seldon Enperprise Platform in the namespace `seldon-system`.
    ```bash
