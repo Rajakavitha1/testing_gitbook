@@ -32,7 +32,7 @@ To deploy Seldon Enterprise Platform:
    kubectl create ns seldon || echo "Namespace seldon already exists"
    ```
 
-1. Annotate the namespace `seldon` so that it is accessible:
+1. Annotate the namespace `seldon` so that it is accessible in the Seldon Enterprise Platform UI:
    ```bash
    kubectl label ns seldon seldon.restricted=false --overwrite=true
    ``` 
