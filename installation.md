@@ -1,7 +1,7 @@
 # Installation of Seldon Enterprise Platform 
 
 You can install Seldon Enterprise Platform on your local computer that is running a Kubernetes
-cluster using [kind][kind-docs], or [minikube][minikube-docs].
+cluster using [kind][kind-docs].
  
 {% hint style="info" %}
 **Note**: These instructions are for installing the Seldon Enterprise Platform on a local Kubernetes cluster, with an emphasis on ease of learning. For installing Seldon Enterprise Platform in a production environment, see [cluster requirements][cluster-requirements].
@@ -137,7 +137,6 @@ To install Seldon Enterprise Platform:
 
 
 [kind-docs]: https://kubernetes.io/docs/tasks/tools/#kind
-[minikube-docs]: https://kubernetes.io/docs/tasks/tools/#minikube
 [kubectl-docs]: https://kubernetes.io/docs/tasks/tools/#kubectl
 [helm-docs]: https://helm.sh/docs/intro/install/
 [contact]: https://www.seldon.io/contact
