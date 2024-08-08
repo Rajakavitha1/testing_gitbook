@@ -80,9 +80,9 @@ To install Seldon Enterprise Platform:
    ```
 
 
-     {% hint style="info" %}
-     **Note**: These configurations do not enable features such as Request logging and GitOps.
-     {% endhint %}  
+       {% hint style="info" %}
+       **Note**: These configurations do not enable features such as Request logging and GitOps.
+       {% endhint %}  
 
 1. Change to the directory that contains the `install-values.yaml` file and then install Seldon Enterprise Platform in the namespace `seldon-system`.
    ```bash
