@@ -79,6 +79,7 @@ To install Seldon Enterprise Platform:
      enabled: true
    ```
 
+
     {% hint style="info" %}
     **Note**: These configurations do not enable features such as Request logging and GitOps.
     {% endhint %}  
