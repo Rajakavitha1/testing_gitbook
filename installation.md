@@ -124,12 +124,16 @@ To install Seldon Enterprise Platform:
    kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
    ```
    
-1. Open your browser and navigate to  `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
+1. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
 
    ![Seldon Enterprise Platform](sep-welcome-page.png "Seldon Enperprise Platform Welcome Page")
 
-1. Apply the trial license and click **Activate**.  
+1. Apply the trial license and click **Activate**.
 
+
+{% hint style="info" %}
+**Note**: After confirming that port-forwarding to the application is configured, you can open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access the Seldon Enterprise Platform deployed in the Kubernetes cluster at any time..
+{% endhint %}  
 
 ## Additional Resources
 
