@@ -80,6 +80,7 @@ To install Seldon Enterprise Platform:
    ```
 
 
+    <br>
     {% hint style="info" %}
     **Note**: These configurations do not enable features such as Request logging and GitOps.
     {% endhint %}  
