@@ -130,9 +130,8 @@ To install Seldon Enterprise Platform:
 
 1. Apply the trial license and click **Activate**.
 
-
 {% hint style="info" %}
-**Note**: After confirming that port-forwarding to the application is configured, you can open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access the Seldon Enterprise Platform deployed in the Kubernetes cluster at any time..
+**Note**: After confirming that port-forwarding to the application is configured, you can open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access the Seldon Enterprise Platform deployed in the Kubernetes cluster at any time.
 {% endhint %}  
 
 ## Additional Resources
