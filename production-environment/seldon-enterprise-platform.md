@@ -4,11 +4,11 @@ description: Installing Seldon Enterprise Platform in a production environment.
 
 # Seldon Enterprise Platform
 
-You can install Seldon Enterprise Platform in a Kubernetes cluster that is self-hosted or a managed Kubernetes service that is provided by a cloud provider. To install Seldon Enterprise in a production environment, see [cluster requirements](./#cluster-requirements).
+You can install the Seldon Enterprise Platform in either a self-hosted Kubernetes cluster or a managed Kubernetes service provided by a cloud provider. For installation in a production environment, see [cluster requirements](./#cluster-requirements).
 
 ## Prerequisites
 
-* Install and connect to a Kubernetes cluster that is running version 1.23 . For details about connecting to your Kubernetes cluster, see the respective cloud provider documentation.&#x20;
+* Set up and connect to a Kubernetes cluster running version 1.23. For instructions on connecting to your Kubernetes cluster, refer to the documentation provided by your cloud provider.&#x20;
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl), the Kubernetes command-line tool.
 * Install [Helm](https://helm.sh/docs/intro/install/), the package manager for Kubernetes.
 * Seldon Enterprise Platform license key. You can reach out to Seldon [support team](https://www.seldon.io/contact) to get a trial license key.
