@@ -1,10 +1,8 @@
 # Table of contents
 
-* [Installation of Seldon Enterprise Platform](README.md)
-
 ## Installation of Seldon Enterprise Platform
 
-* [Learning Environment](installation-of-seldon-enterprise-platform/learning-environment.md)
+* [Learning Environment](README.md)
 
 ***
 

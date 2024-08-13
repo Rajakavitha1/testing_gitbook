@@ -1,4 +1,4 @@
-# Installation of Seldon Enterprise Platform
+# Learning Environment
 
 You can install Seldon Enterprise Platform on your local computer that is running a Kubernetes cluster using [kind](https://kubernetes.io/docs/tasks/tools/#kind).
 
@@ -128,7 +128,7 @@ To install Seldon Enterprise Platform:
     ```
 8.  Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
 
-    ![Seldon Enterprise Platform](sep-welcome-page.png)
+    ![Seldon Enterprise Platform](../sep-welcome-page.png)
 9. Apply the trial license and click **Activate**.
 
 {% hint style="info" %}
