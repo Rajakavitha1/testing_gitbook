@@ -8,7 +8,7 @@ description: >-
 
 An ingress controller functions as a reverse proxy and load balancer, implementing a Kubernetes Ingress. It adds an abstraction layer for traffic routing by receiving traffic from outside the Kubernetes platform and load balancing it to Pods running within the Kubernetes cluster.
 
-The Seldon Enterprise Platform supports Istio ingress controllers. Both Seldon Core 1 and Seldon Core 2 integrate most effectively with your Seldon Enterprise Platform ecosystem when using an Istio ingress controller.
+The Seldon Enterprise Platform supports Istio ingress controllers. Seldon Core 1 and Seldon Core 2 integrate most effectively with an Istio ingress controller in your Seldon Enterprise Platform ecosystem.
 
 This table lists the features and the ingress controllers for Seldon Core 1 and Seldon Core 2.
 
