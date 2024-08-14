@@ -73,5 +73,103 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     echo "Seldon Enterprise Platform: http://$ISTIO_INGRESS/seldon-deploy/"
 
     ```
+    <br>
+    Make a note of the IP address that is displayed in the output.
+
+* [ ] Install Istio Ingress Gateway 
+
+1. Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise.
+<br>
+Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing ingress gateway.
+
+Use your preferred text editor to create and save the file with the following content:
+   ```   
+    image:
+      image: seldonio/seldon-deploy-server:2.3.1
+
+    rbac:
+     opa:
+       enabled:  false
+     nsLabelsAuth:
+       enabled:  true
+
+    ingressGateway:
+      seldonIngressService: "istio-ingressgateway"
+      ingressNamespace: "istio-system"
+
+    virtualService:
+      create: true
+      gateways:
+        - istio-system/seldon-gateway
+    
+    requestLogger:
+      create: false
+
+    gitops:
+      argocd:
+        enabled: false
+
+    enableAppAuth: false
+
+    elasticsearch:
+      basicAuth: false
+
+    seldon:
+      curlForm: |
+        curl -k https://<ip_address>/{{ .Namespace }}/{{ .ModelName }}/api/v0.1/predictions \<br/>
+        &nbsp;&nbsp;-H "{{ .TokenHeader }}: {{ .Token }}" \<br/>
+        &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+        &nbsp;&nbsp;-d '{{ .Payload }}'
+      tensorFlowCurlForm: |
+        curl -k https://<ip_address>/{{ .Namespace }}/{{ .ModelName }}/v1/models/:predict \<br/>
+        &nbsp;&nbsp;-H "{{ .TokenHeader }}: {{ .Token }}" \<br/>
+        &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+        &nbsp;&nbsp;-d '{{ .Payload }}'
+
+    seldonCoreV2:
+      curlForm: |
+        curl -k https://<ip_address>/v2/models/{{ .ModelName }}/infer \<br/>
+        &nbsp;&nbsp;-H "Host: {{ .Namespace }}.inference.seldon" \<br/>
+        &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+        &nbsp;&nbsp;-H "Seldon-Model: {{ .ModelName }}.pipeline" \<br/>
+        &nbsp;&nbsp;-d '{{ .Payload }}'
+      enabled: true
+      requestForm: '{{ .SeldonProtocol }}://seldon-mesh.{{ .Namespace }}.svc.cluster.local/v2/pipelines/{{
+    .ModelName }}/infer'
+    ```
+1. Change to the directory that contains the `install-values.yaml` file and then install Seldon Enterprise Platform in the namespace `seldon-system`.
+    ```
+    helm upgrade seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f install-values.yaml --version 2.3.1 --install
+    ```
+    When the installation is successful, you should see this:
+    ```
+    Release "seldon-enterprise" has been upgraded. Happy Helming!
+  NAME: seldon-enterprise
+  LAST DEPLOYED: Tue Aug 13 15:16:14 2024
+  NAMESPACE: seldon-system
+  STATUS: deployed
+  REVISION: 2
+  NOTES:
+  1. Get the application URL by running these commands:
+    export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
+    echo "Visit http://127.0.0.1:8000/seldon-deploy/ to use your application"
+  ``` 
+1. Check the status of the installation seldon-enterprise-seldon-deploy.
+   ```
+   kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
+   ```
+   When the installation is complete you should see this:
+   ```
+   deployment "seldon-enterprise-seldon-deploy" successfully rolled out
+   ```
+1. Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
+   ```
+   export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
+   ```
+1. You can use port-forwarding to access your application locally.
+   ```
+   kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
+   ```
+1. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.  
 
 
