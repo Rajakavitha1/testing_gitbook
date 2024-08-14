@@ -94,7 +94,12 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     {% hint style="info" %}
     Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing ingress gateway.
     {% endhint %}
+
     Use your preferred text editor to create and save the file with the following content:
+    ```
+      
+   
+    ```
 2.  Check the status of the installation seldon-enterprise-seldon-deploy.
 
     ```
