@@ -92,9 +92,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 
 * [ ] Install Seldon Enterprise Platform with Istio ingress controller
 
-1.  Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise. Use your preferred text editor to create and save the file with the following content:
-
-    {% hint style="info" %} Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing Istio ingress gatway. {% endhint %}
+1.  Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise. Replace `<ip_address>` with the IP address that you made a note of when installing Istio ingress gatway and save the file with the following content:
 
     ```yaml
     image:
