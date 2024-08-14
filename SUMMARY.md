@@ -8,5 +8,6 @@
   * [Ingress Controller](production-environment/ingress-controller/README.md)
     * [Istio](production-environment/ingress-controller/istio.md)
   * [PostgreSQL](production-environment/postgresql/README.md)
-    * [Self-hosted PostgreSQL](production-environment/postgresql/self-hosted-postgresql.md)
     * [Managed PostgreSQL](production-environment/postgresql/managed-postgresql.md)
+    * [Self-hosted PostgreSQL](production-environment/postgresql/self-hosted-postgresql.md)
+
