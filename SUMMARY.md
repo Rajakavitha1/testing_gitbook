@@ -10,7 +10,6 @@
   * [Seldon Enterprise Platform](production-environment/seldon-enterprise-platform.md)
   * [Ingress Controller](production-environment/ingress-controller/README.md)
     * [Istio](production-environment/ingress-controller/istio.md)
-    * [NGINX](production-environment/ingress-controller/nginx.md)
   * [PostgreSQL](production-environment/postgresql/README.md)
     * [Self-hosted PostgreSQL](production-environment/postgresql/self-hosted-postgresql.md)
     * [Managed PostgreSQL](production-environment/postgresql/managed-postgresql.md)
