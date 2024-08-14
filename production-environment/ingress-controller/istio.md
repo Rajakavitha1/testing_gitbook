@@ -19,7 +19,7 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
 1. Install Istio Ingress Gateway
 1. Install Seldon Enterprise Platform with Istio ingress controller
 
-* [ ] Install Istio
+### Install Istio
 
 1.  Download the Istio installation package for the version you want to use. In the following command replace `<version>` with the version of Istio that you downloaded:
 
@@ -28,7 +28,7 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
     cd istio-<version>
     export PATH=$PWD/bin:$PATH
     ```
-1.  Install the Istio Custom Resource Definitions (CRDs) and Istio components in your cluster using the `istioctl`:
+1.  Install the Istio Custom Resource Definitions (CRDs) and Istio components in your cluster using the `istioctl` command line tool:
 
     ```
     istioctl install --set profile=default -y
@@ -39,7 +39,7 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
     kubectl label namespace istio-system istio-injection=enabled
     ```
 
-* [ ] Install Istio Ingress Gateway
+### Install Istio Ingress Gateway
 
 1.  Verify that Istio Ingress Gateway is installed:
 
@@ -88,14 +88,11 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
 
     ```
 
-    \
-
-
     {% hint style="info" %}
     Make a note of the IP address that is displayed in the output.
     {% endhint %}
 
-* [ ] Install Seldon Enterprise Platform with Istio ingress controller
+### Install Seldon Enterprise Platform with Istio ingress controller
 
 1.  Update the configurations in the `install-values.yaml` file you created during the Seldon Enterprise installation. Replace `<ip_address>` with the IP address noted during the Istio Ingress Gateway installation, and save the file with the following content:
 
