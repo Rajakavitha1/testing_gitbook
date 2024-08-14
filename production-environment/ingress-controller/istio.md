@@ -94,6 +94,8 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 
 1.  Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise. Use your preferred text editor to create and save the file with the following content:
 
+    {% hint style="info" %} Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing Istio ingress gatway. {% endhint %}
+
     ```yaml
     image:
     image: seldonio/seldon-deploy-server:2.3.1
@@ -149,29 +151,22 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
         .ModelName }}/infer'
 
     ```
+1. Check the status of the installation seldon-enterprise-seldon-deploy.
+    ```
+    ```
+    When the installation is complete you should see this:
 
-2\. Check the status of the installation seldon-enterprise-seldon-deploy.
-
-
-
-````
-
-
-When the installation is complete you should see this:
-
-```
-deployment "seldon-enterprise-seldon-deploy" successfully rolled out
-```
-````
-
+    ```
+    deployment "seldon-enterprise-seldon-deploy" successfully rolled out
+    ```
 1.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
 
     ```
     export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
     ```
-2.  You can use port-forwarding to access your application locally.
+1.  You can use port-forwarding to access your application locally.
 
     ```
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
-3. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.
+1. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.
