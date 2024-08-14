@@ -82,45 +82,96 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     echo "Seldon Enterprise Platform: http://$ISTIO_INGRESS/seldon-deploy/"
 
     ```
-    <br>
+
+    \
+
 
     {% hint style="info" %}
     Make a note of the IP address that is displayed in the output.
     {% endhint %}
-  
+
 * [ ] Install Seldon Enterprise Platform with Istio ingress controller
 
-1. Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise. Use your preferred text editor to create and save the file with the following content:
-    ```
-      
-   
-    ```
-    <br>
-    {% hint style="info" %}
-    Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing ingress gateway.
-    {% endhint %}
-1.  Check the status of the installation seldon-enterprise-seldon-deploy.
+1.  Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise. Use your preferred text editor to create and save the file with the following content:
+
+    ```yaml
+    image:
+    image: seldonio/seldon-deploy-server:2.3.1
+
+    rbac:
+     opa:
+       enabled:  false
+     nsLabelsAuth:
+       enabled:  true
+
+    ingressGateway:
+      seldonIngressService: "istio-ingressgateway"
+      ingressNamespace: "istio-system"
+
+    virtualService:
+      create: true
+      gateways:
+        - istio-system/seldon-gateway
+
+    requestLogger:
+      create: false
+
+    gitops:
+      argocd:
+        enabled: false
+
+    enableAppAuth: false
+
+    elasticsearch:
+      basicAuth: false
+
+    seldon:
+      curlForm: |
+        curl -k https://35.204.32.161/seldon/{{ .Namespace }}/{{ .ModelName }}/api/v0.1/predictions \<br/>
+        &nbsp;&nbsp;-H "{{ .TokenHeader }}: {{ .Token }}" \<br/>
+        &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+        &nbsp;&nbsp;-d '{{ .Payload }}'
+      tensorFlowCurlForm: |
+        curl -k https://35.204.32.161/seldon/{{ .Namespace }}/{{ .ModelName }}/v1/models/:predict \<br/>
+        &nbsp;&nbsp;-H "{{ .TokenHeader }}: {{ .Token }}" \<br/>
+        &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+        &nbsp;&nbsp;-d '{{ .Payload }}'
+
+    seldonCoreV2:
+      curlForm: |
+        curl -k https://35.204.32.161/v2/models/{{ .ModelName }}/infer \<br/>
+        &nbsp;&nbsp;-H "Host: {{ .Namespace }}.inference.seldon" \<br/>
+        &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+        &nbsp;&nbsp;-H "Seldon-Model: {{ .ModelName }}.pipeline" \<br/>
+        &nbsp;&nbsp;-d '{{ .Payload }}'
+      enabled: true
+      requestForm: '{{ .SeldonProtocol }}://seldon-mesh.{{ .Namespace }}.svc.cluster.local/v2/pipelines/{{
+        .ModelName }}/infer'
 
     ```
-    kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
-    ```
 
-    When the installation is complete you should see this:
+2\. Check the status of the installation seldon-enterprise-seldon-deploy.
 
-    ```
-    deployment "seldon-enterprise-seldon-deploy" successfully rolled out
-    ```
+
+
+````
+
+
+When the installation is complete you should see this:
+
+```
+deployment "seldon-enterprise-seldon-deploy" successfully rolled out
+```
+````
 
 1.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
 
     ```
     export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
     ```
-
-1.  You can use port-forwarding to access your application locally.
+2.  You can use port-forwarding to access your application locally.
 
     ```
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
-
-1. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.
+3. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.
