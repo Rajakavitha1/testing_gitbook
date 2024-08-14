@@ -30,5 +30,48 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     ```
     kubectl label namespace istio-system istio-injection=enabled
     ```
-    
+* [ ] Install Istio Ingress Gateway
+
+1. Verify that Istio Ingress Gateway is installed:
+   ```
+   kubectl get svc istio-ingressgateway -n istio-system
+   ```
+   This should return details of the Istio Ingress Gateway, including the external IP address.
+
+1. Create a YAML file to specify Gateway resource in the `istio-system` namespace to expose your application. For example, create the `istio-seldon-gateway.yaml` file. Use your preferred text editor to create and save the file with the following content:
+   ```
+    apiVersion: networking.istio.io/v1alpha3
+    kind: Gateway
+    metadata:
+      name: my-gateway
+      namespace: istio-system
+    spec:
+      selector:
+        istio: ingressgateway # Use Istio's default ingress gateway
+      servers:
+      - port:
+          number: 80
+          name: http
+          protocol: HTTP
+        hosts:
+        - "*"
+    ```
+1. Apply the configuration:
+   ```
+   kubectl apply -f istio-seldon-gateway.yaml
+   ```
+   When the configuration is applied, you should see this:
+   ```
+   gateway.networking.istio.io/seldon-gateway created
+   ```
+
+1. Find the IP address of the Seldon Enterprise Platform instance running with Istio:
+    ```
+    ISTIO_INGRESS=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    ISTIO_INGRESS+=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+
+    echo "Seldon Enterprise Platform: http://$ISTIO_INGRESS/seldon-deploy/"
+
+    ```
+
 
