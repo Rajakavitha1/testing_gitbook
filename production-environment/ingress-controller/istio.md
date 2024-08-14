@@ -15,9 +15,10 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 ## Installing Istio ingress controller
 
 Installing Istio ingress controller in a Kubernetes cluster running Seldon Enterprise Platform involves these tasks:
-1. Install Istio
-1. Install Istio Ingress Gateway
-1. Install Seldon Enterprise Platform with Istio ingress controller
+
+1. [Install Istio](istio.md#install-istio)
+2. [Install Istio Ingress Gateway](istio.md#install-istio-ingress-gateway)
+3. [Install Seldon Enterprise Platform with Istio ingress controller](istio.md#install-seldon-enterprise-platform-with-istio-ingress-controller)
 
 ### Install Istio
 
@@ -28,12 +29,12 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
     cd istio-<version>
     export PATH=$PWD/bin:$PATH
     ```
-1.  Install the Istio Custom Resource Definitions (CRDs) and Istio components in your cluster using the `istioctl` command line tool:
+2.  Install the Istio Custom Resource Definitions (CRDs) and Istio components in your cluster using the `istioctl` command line tool:
 
     ```
     istioctl install --set profile=default -y
     ```
-1.  Create a namespace where you want to enable Istio automatic sidecar injection. For example in the namespace `istio-system`:
+3.  Create a namespace where you want to enable Istio automatic sidecar injection. For example in the namespace `istio-system`:
 
     ```
     kubectl label namespace istio-system istio-injection=enabled
@@ -48,7 +49,7 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
     ```
 
     This should return details of the Istio Ingress Gateway, including the external IP address.
-1.  Create a YAML file to specify Gateway resource in the `istio-system` namespace to expose your application. For example, create the `istio-seldon-gateway.yaml` file. Use your preferred text editor to create and save the file with the following content:
+2.  Create a YAML file to specify Gateway resource in the `istio-system` namespace to expose your application. For example, create the `istio-seldon-gateway.yaml` file. Use your preferred text editor to create and save the file with the following content:
 
     ```
      apiVersion: networking.istio.io/v1alpha3
@@ -67,7 +68,7 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
          hosts:
          - "*"
     ```
-1.  Apply the configuration:
+3.  Apply the configuration:
 
     ```
     kubectl apply -f istio-seldon-gateway.yaml
@@ -78,7 +79,7 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
     ```
     gateway.networking.istio.io/seldon-gateway created
     ```
-1.  Find the IP address of the Seldon Enterprise Platform instance running with Istio:
+4.  Find the IP address of the Seldon Enterprise Platform instance running with Istio:
 
     ```
     ISTIO_INGRESS=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
@@ -94,7 +95,7 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
 
 ### Install Seldon Enterprise Platform with Istio ingress controller
 
-1.  Update the configurations in the `install-values.yaml` file you created during the Seldon Enterprise installation. Replace `<ip_address>` with the IP address noted during the Istio Ingress Gateway installation, and save the file with the following content:
+1.  Update the configurations in the `install-values.yaml` file you created during the Seldon Enterprise installation. Replace `<ip_address>` with the IP address noted during the [Istio Ingress Gateway installation](istio.md#install-istio-ingress-gateway) in the following content and save the file:
 
     ```yaml
     image:
@@ -151,27 +152,30 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
         .ModelName }}/infer'
 
     ```
-1. Change to the directory that contains the `install-values.yaml` file and then upgrade the Seldon Enterprise Platform installation in the namespace `seldon-system`. 
+2.  Change to the directory that contains the `install-values.yaml` file and then upgrade the Seldon Enterprise Platform installation in the namespace `seldon-system`.
+
     ```
     helm upgrade seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f install-values.yaml --version 2.3.1 --install
-    ```   
-1. Check the status of the installation seldon-enterprise-seldon-deploy.
+    ```
+3.  Check the status of the installation seldon-enterprise-seldon-deploy.
+
     ```
     kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
     ```
+
     When the installation is complete you should see this:
 
     ```
     deployment "seldon-enterprise-seldon-deploy" successfully rolled out
     ```
-1.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
+4.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
 
     ```
     export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
     ```
-1.  You can use port-forwarding to access your application locally.
+5.  You can use port-forwarding to access your application locally.
 
     ```
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
-1. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
+6. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
