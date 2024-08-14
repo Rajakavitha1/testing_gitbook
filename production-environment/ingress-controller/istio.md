@@ -14,6 +14,11 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 
 ## Installing Istio ingress controller
 
+Installing Istio ingress controller in a Kubernetes cluster running Seldon Enterprise Platform involves these tasks:
+1. Install Istio
+1. Install Istio Ingress Gateway
+1. Install Seldon Enterprise Platform with Istio ingress controller
+
 * [ ] Install Istio
 
 1.  Download the Istio installation package for the version you want to use. In the following command replace `<version>` with the version of Istio that you downloaded:
@@ -23,12 +28,12 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     cd istio-<version>
     export PATH=$PWD/bin:$PATH
     ```
-2.  Install the Istio Custom Resource Definitions (CRDs) and Istio components in your cluster using the `istioctl`:
+1.  Install the Istio Custom Resource Definitions (CRDs) and Istio components in your cluster using the `istioctl`:
 
     ```
     istioctl install --set profile=default -y
     ```
-3.  Create a namespace where you want to enable Istio automatic sidecar injection. For example in the namespace `istio-system`:
+1.  Create a namespace where you want to enable Istio automatic sidecar injection. For example in the namespace `istio-system`:
 
     ```
     kubectl label namespace istio-system istio-injection=enabled
@@ -43,7 +48,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     ```
 
     This should return details of the Istio Ingress Gateway, including the external IP address.
-2.  Create a YAML file to specify Gateway resource in the `istio-system` namespace to expose your application. For example, create the `istio-seldon-gateway.yaml` file. Use your preferred text editor to create and save the file with the following content:
+1.  Create a YAML file to specify Gateway resource in the `istio-system` namespace to expose your application. For example, create the `istio-seldon-gateway.yaml` file. Use your preferred text editor to create and save the file with the following content:
 
     ```
      apiVersion: networking.istio.io/v1alpha3
@@ -62,7 +67,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
          hosts:
          - "*"
     ```
-3.  Apply the configuration:
+1.  Apply the configuration:
 
     ```
     kubectl apply -f istio-seldon-gateway.yaml
@@ -73,7 +78,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     ```
     gateway.networking.istio.io/seldon-gateway created
     ```
-4.  Find the IP address of the Seldon Enterprise Platform instance running with Istio:
+1.  Find the IP address of the Seldon Enterprise Platform instance running with Istio:
 
     ```
     ISTIO_INGRESS=$(kubectl get svc -n istio-system istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
@@ -172,4 +177,4 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     ```
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
-1. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.
+1. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
