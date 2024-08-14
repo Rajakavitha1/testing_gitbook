@@ -149,7 +149,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
         .ModelName }}/infer'
 
     ```
-1. Change to the directory that contains the `install-values.yaml` file and then install Seldon Enterprise Platform in the namespace `seldon-system`. 
+1. Change to the directory that contains the `install-values.yaml` file and then upgrade the Seldon Enterprise Platform installation in the namespace `seldon-system`. 
     ```
     helm upgrade seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f install-values.yaml --version 2.3.1 --install
     ```   
