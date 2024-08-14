@@ -92,7 +92,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 
 * [ ] Install Seldon Enterprise Platform with Istio ingress controller
 
-1.  Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise. Replace `<ip_address>` with the IP address that you made a note of when installing Istio ingress gatway and save the file with the following content:
+1.  Update the configurations in the install-values.yaml file you created during the Seldon Enterprise installation. Replace <ip_address> with the IP address noted during the Istio Ingress Gateway installation, and save the file with the following content:
 
     ```yaml
     image:
@@ -127,19 +127,19 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 
     seldon:
       curlForm: |
-        curl -k https://35.204.32.161/seldon/{{ .Namespace }}/{{ .ModelName }}/api/v0.1/predictions \<br/>
+        curl -k https://<ip_address>/seldon/{{ .Namespace }}/{{ .ModelName }}/api/v0.1/predictions \<br/>
         &nbsp;&nbsp;-H "{{ .TokenHeader }}: {{ .Token }}" \<br/>
         &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
         &nbsp;&nbsp;-d '{{ .Payload }}'
       tensorFlowCurlForm: |
-        curl -k https://35.204.32.161/seldon/{{ .Namespace }}/{{ .ModelName }}/v1/models/:predict \<br/>
+        curl -k https://<ip_address>/seldon/{{ .Namespace }}/{{ .ModelName }}/v1/models/:predict \<br/>
         &nbsp;&nbsp;-H "{{ .TokenHeader }}: {{ .Token }}" \<br/>
         &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
         &nbsp;&nbsp;-d '{{ .Payload }}'
 
     seldonCoreV2:
       curlForm: |
-        curl -k https://35.204.32.161/v2/models/{{ .ModelName }}/infer \<br/>
+        curl -k https://<ip_address>/v2/models/{{ .ModelName }}/infer \<br/>
         &nbsp;&nbsp;-H "Host: {{ .Namespace }}.inference.seldon" \<br/>
         &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
         &nbsp;&nbsp;-H "Seldon-Model: {{ .ModelName }}.pipeline" \<br/>
