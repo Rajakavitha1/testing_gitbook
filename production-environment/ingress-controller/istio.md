@@ -83,20 +83,19 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 
     ```
 
-    \
+    {% hint style="info" %}
     Make a note of the IP address that is displayed in the output.
-
-* [ ] Install Istio Ingress Gateway
+    {% endhint %}
+  
+* [ ] Install Seldon Enterprise Platform with Istio ingress controller
 
 1. Update the configurations in the `install-values.yaml` file that you created when installing Seldon Enterprise.
 
-{% hint style="info" %}
-Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing ingress gateway.
-{% endhint %}
-
-&#x20;      Use your preferred text editor to create and save the file with the following content:
-
-1.  Check the status of the installation seldon-enterprise-seldon-deploy.
+    {% hint style="info" %}
+    Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing ingress gateway.
+    {% endhint %}
+    Use your preferred text editor to create and save the file with the following content:
+2.  Check the status of the installation seldon-enterprise-seldon-deploy.
 
     ```
     kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
@@ -107,14 +106,14 @@ Ensure that you replace `<ip_address>` with the IP address that you made a note 
     ```
     deployment "seldon-enterprise-seldon-deploy" successfully rolled out
     ```
-2.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
+3.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
 
     ```
     export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
     ```
-3.  You can use port-forwarding to access your application locally.
+4.  You can use port-forwarding to access your application locally.
 
     ```
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
-4. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.
+5. Open your browser and navigate to http://127.0.0.1:8000/seldon-deploy/ to access Seldon Enterprise Platform.
