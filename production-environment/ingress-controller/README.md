@@ -1,2 +1,19 @@
+---
+description: >-
+  Learn more about the Ingress controllers that Seldon Enterprise Platform
+  supports.
+---
+
 # Ingress Controller
 
+An ingress controller functions as a reverse proxy and load balancer, implementing a Kubernetes Ingress. It adds an abstraction layer for traffic routing by receiving traffic from outside the Kubernetes platform and load balancing it to Pods running within the platform.
+
+The Seldon Enterprise Platform supports both Istio and NGINX ingress controllers. Depending on where you have installed Seldon Core or Seldon Core v2, you can select the ingress controller that best integrates with your Seldon Enterprise Platform ecosystem.
+
+This table lists the features and the ingress controllers for Seldon Core and Seldon Core v2.
+
+<table><thead><tr><th width="312">Seldon Core</th><th width="415">Seldon Core v2</th></tr></thead><tbody><tr><td>The features of Seldon Core will not function without the Istio ingress controller.</td><td>Seldon Core v2 is by design service mesh-agnostic and as a result you can choose any ingress controller you want. However, If you choose a non-Istio ingress controller it may restrict you to the more basic or limited functionality of Seldon Core v2.</td></tr><tr><td>Seldon Core uses Istio because it relies on a service mesh for traffic splitting and leverages Knative for drift and outlier detection, as well as inference event logging.</td><td>Seldon Core v2 offers features such as  <a href="https://www.seldon.io/news/seldon-deploy-advanced-released">multi-model serving and overcommit functionality</a> and uses Kafka as a message queue for <a href="https://www.seldon.io/news/seldon-deploy-advanced-released">data-centric pipelines</a>. These features work best with Istio ingress controller.</td></tr></tbody></table>
+
+### Ingress Controller Comparison <a href="#ingress-controller-comparison" id="ingress-controller-comparison"></a>
+
+<table data-header-hidden><thead><tr><th width="219">Ingress controller</th><th>Features</th></tr></thead><tbody><tr><td>Istio</td><td><p></p><ul><li>Service mesh with advanced traffic management capabilities.</li><li>Required for effective use of Seldon Core.</li><li>Automatic configuration of ingress routes for Seldon Core deployments.</li><li>Enables authorization of Seldon Core deployments.</li><li>Manages traffic for rollout strategies, drift and outlier detection, and inference data logging for Seldon Core.</li><li>Supports both HTTP/1 and HTTP/2 (gRPC) traffic.</li><li>Provides TLS support for HTTPS and gRPCS.</li><li>Supports ingress routes for  ML deployments.</li></ul></td></tr><tr><td>NGINX</td><td><ul><li>Flexible, high-performance ingress controller.</li><li>Simple, lightweight installation with no additional CRDs.</li><li>One of the most popular ingress controllers for Kubernetes.</li><li>Supports HTTP/1 and HTTP/2 (gRPC) traffic.</li><li>Provides TLS support for HTTPS and gRPCS.</li><li>Supports ingress routes for ML deployments.</li></ul><p></p></td></tr></tbody></table>
