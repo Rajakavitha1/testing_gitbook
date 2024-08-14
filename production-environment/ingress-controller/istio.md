@@ -82,6 +82,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     echo "Seldon Enterprise Platform: http://$ISTIO_INGRESS/seldon-deploy/"
 
     ```
+    <br>
 
     {% hint style="info" %}
     Make a note of the IP address that is displayed in the output.
@@ -98,7 +99,6 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     {% hint style="info" %}
     Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing ingress gateway.
     {% endhint %}
-
 1.  Check the status of the installation seldon-enterprise-seldon-deploy.
 
     ```
