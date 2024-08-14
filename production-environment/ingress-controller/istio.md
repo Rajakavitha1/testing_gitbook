@@ -92,7 +92,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 
 * [ ] Install Seldon Enterprise Platform with Istio ingress controller
 
-1.  Update the configurations in the install-values.yaml file you created during the Seldon Enterprise installation. Replace <ip_address> with the IP address noted during the Istio Ingress Gateway installation, and save the file with the following content:
+1.  Update the configurations in the `install-values.yaml` file you created during the Seldon Enterprise installation. Replace `<ip_address>` with the IP address noted during the Istio Ingress Gateway installation, and save the file with the following content:
 
     ```yaml
     image:
@@ -149,8 +149,13 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
         .ModelName }}/infer'
 
     ```
+1. Change to the directory that contains the `install-values.yaml` file and then install Seldon Enterprise Platform in the namespace `seldon-system`. 
+    ```
+    helm upgrade seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f install-values.yaml --version 2.3.1 --install
+    ```   
 1. Check the status of the installation seldon-enterprise-seldon-deploy.
     ```
+    kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
     ```
     When the installation is complete you should see this:
 
