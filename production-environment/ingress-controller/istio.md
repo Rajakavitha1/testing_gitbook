@@ -95,7 +95,7 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
    
     ```
     <br>
-    % hint style="info" %}
+    {% hint style="info" %}
     Ensure that you replace `<ip_address>` with the IP address that you made a note of when installing ingress gateway.
     {% endhint %}
 
