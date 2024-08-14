@@ -17,7 +17,6 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
 * [ ] Install Istio
 
 1. Download the Istio installation package for the version you want to use. In the following command replace `<version>` with the version of Istio that you downloaded:
-
     ```
     curl -L https://istio.io/downloadIstio | sh -
     cd istio-<version>
@@ -25,8 +24,11 @@ Istio implements the Kubernetes ingress resource to expose a service and make it
     ```
 1. Install the Istio Custom Resource Definitions (CRDs) and Istio components in your cluster using the `istioctl`:
     ```
+    istioctl install --set profile=default -y
     ```
 1. Create a namespace where you want to enable Istio automatic sidecar injection. For example in the namespace `istio-system`:
     ```
+    kubectl label namespace istio-system istio-injection=enabled
     ```
+    
 
