@@ -35,7 +35,8 @@ To configure a PostgreSQL database with Seldon Enterprise Platform:
     
    {% hint style="info" %}
    **Note**: If you would like to configure PostgreSQL with SSL, see the SSL Support section.
-   {% endhint %}   
+   {% endhint %}
+      
 1. Add the following to your `install-values.yaml`file.
     ```
     metadata:
