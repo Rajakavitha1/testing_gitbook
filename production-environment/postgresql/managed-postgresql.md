@@ -32,11 +32,10 @@ To configure a PostgreSQL database with Seldon Enterprise Platform:
       --dry-run=client -o yaml \
       | kubectl apply -n seldon-system -f -
     ```
-    \
+    
    {% hint style="info" %}
-**Note**: If you would like to configure PostgreSQL with SSL, see the SSL Support section.
-{% endhint %}
-   
+   **Note**: If you would like to configure PostgreSQL with SSL, see the SSL Support section.
+   {% endhint %}   
 1. Add the following to your `install-values.yaml`file.
     ```
     metadata:
