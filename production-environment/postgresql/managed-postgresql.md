@@ -13,7 +13,13 @@ You can connect a managed PostgreSQL service in [AWS RDS](./#amazon-rds) and [Go
 1. Install [Seldon Enterprise Platform](../seldon-enterprise-platform.md).
 2. Install [Ingress Controller](../ingress-controller/).
 
-To configure a PostgreSQL database with Seldon Enterprise Platform, execute the following after substituting the variables `<your_user>`, `<your_password>`,`<metadata>`, and `<your.postgres.host>` with those from your database:
+
+
+### Configure PostgreSQL with Seldon Enterprise Platform
+
+&#x20; To configure a PostgreSQL database with Seldon Enterprise Platform:
+
+1. &#x20;Execute the following after substituting the variables `<your_user>`, `<your_password>`,`<metadata>`, and `<your.postgres.host>` with those from your database:
 
 ```
 kubectl create secret generic -n seldon-system metadata-postgres \
