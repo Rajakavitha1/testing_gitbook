@@ -179,3 +179,13 @@ Installing Istio ingress controller in a Kubernetes cluster running Seldon Enter
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
 6. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
+
+#### Optional: Enable HTTPS/TLS
+
+To secure your Ingress with HTTPS, you can configure TLS settings in the `Gateway` resource using a certificate and key. This involves additional steps like creating Kubernetes secrets for your certificates.
+
+#### Additional Resources
+
+* [Istio Documentation](https://istio.io/latest/docs/tasks/traffic-management/ingress/secure-ingress/)
+* [GKE Ingress Guide](https://cloud.google.com/kubernetes-engine/docs/concepts/ingress)
+* [AWS Documentation](https://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html)
