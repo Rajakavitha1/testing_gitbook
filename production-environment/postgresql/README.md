@@ -2,6 +2,12 @@
 
 You can install PostgreSQL through managed cloud services or by deploying it directly within a Kubernetes cluster. You can also opt to use an existing PostgreSQL instance outside of the Kubernetes cluster that runs Seldon Enterprise Platform.
 
+
+
+{% hint style="info" %}
+**Note**: PostgreSQL operates as an external component outside of the main Seldon stack. As a result, the administration and management of the PostgreSQL instance used by Seldon are the responsibilities of the cluster administrator.
+{% endhint %}
+
 ### Amazon RDS¶
 
 Amazon RDS provides a managed PostgreSQL solution that can be used for storing Seldon Enterprise Platform Model metadata. For information about setting up RDS, managing backups, and other best practices, see [AWS RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html). Ensure the following while setting up RDS:
