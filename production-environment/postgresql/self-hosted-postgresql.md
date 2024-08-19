@@ -15,18 +15,10 @@ You can run PostgreSQL in the same Kubernetes cluster that hosts the Seldon Ente
 ## Prerequisites
 
 1. Install [Seldon Enterprise Platform](../seldon-enterprise-platform.md).
-2. Install[ Ingress Controller](../ingress-controller/).
+2. Install [Ingress Controller](../ingress-controller/).
 3. Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-
-
 ### Installing PostgreSQL in a Kubernetes cluster
-
-1. Install the Zalando operator.
-2. Install a minimal PostgreSQL setup.
-3. Configure Seldon Enterprise Platform.
-
-### Install Zalando operator
 
 1. Clone the Zalando operator repository in your computer.
    `git clone https://github.com/zalando/postgres-operator.git`
