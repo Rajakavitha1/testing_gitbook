@@ -73,7 +73,11 @@ To configure a PostgreSQL database with Seldon Enterprise Platform:
 
 ### SSL Support¶
 
-By default, Seldon Enterprise Platform does not perform any verification of the Postgres server certificate. To allow server certificate verification, change the SSL mode to `verify-ca` or `verify-full` as needed and place one or more root certificates in the `ca.crt` key in the kubernetes secret. Also add any intermediate certificates to the file if they are needed to link the certificate chain sent by the server to the root certificates stored on the client. Execute the following after substituting the variables `<your_user>`, `<your_password>`,`<metadata>`, and `<your.postgres.host>` with those from your database:
+By default, Seldon Enterprise Platform does not perform any verification of the Postgres server certificate. To allow server certificate verification, change the SSL mode to `verify-ca` or `verify-full` as needed and place one or more root certificates in the `ca.crt` key in the kubernetes secret. Also add any intermediate certificates to the file if they are needed to link the certificate chain sent by the server to the root certificates stored on the client.
+
+
+
+&#x20;Execute the following after substituting the variables `<your_user>`, `<your_password>`,`<metadata>`, and `<your.postgres.host>` with those from your database:
 
 ```
 kubectl create secret generic -n seldon-system metadata-postgres \
