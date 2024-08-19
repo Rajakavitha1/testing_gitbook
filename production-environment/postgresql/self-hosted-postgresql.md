@@ -31,8 +31,7 @@ You can run PostgreSQL in the same Kubernetes cluster that hosts the Seldon Ente
 
 1. Install PostgreSQL using the Helm charts.
    `helm install postgres-operator ./charts/postgres-operator --namespace   postgres`
-   When the installation is successful you should see this:
-
+   After a successful installation, you should see::
    ```
    NAME: postgres-operator 
    LAST DEPLOYED: Tue Aug 13 15:22:02 2024
@@ -84,7 +83,7 @@ You can run PostgreSQL in the same Kubernetes cluster that hosts the Seldon Ente
       | kubectl apply -n seldon-system -f -
     rm db_pass
     ```
-    When the configuration is successful, you should see this:
+    After a successful configuration, you should see:
     ```secret/metadata-postgres configured```
 1. After the PostgreSQL database and secrets with credentials are ready, add the following to your `install-values.yaml`file.
     ```
