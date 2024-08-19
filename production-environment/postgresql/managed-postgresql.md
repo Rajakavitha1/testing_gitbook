@@ -8,6 +8,12 @@ description: >-
 
 You can connect a managed PostgreSQL service in AWS and GCP with Seldon Enterprise Platform. After you have a running PostgreSQL instance, with a database and a user created, you can configure Seldon Enterprise Platform by adding the `metadata-postgres` secret. For more information, see [PostgreSQL with Seldon Enterprise Platform](./).
 
+
+## Prerequisites
+
+1. Install [Seldon Enterprise Platform](../seldon-enterprise-platform.md).
+2. Install [Ingress Controller](../ingress-controller/).
+
 ### Amazon RDS¶
 
 Amazon RDS provides a managed PostgreSQL solution that can be used for storing Seldon Enterprise Platform Model metadata. For information about setting up RDS, managing backups, and other best practices, see [AWS RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html). Ensure the following while setting up RDS:
