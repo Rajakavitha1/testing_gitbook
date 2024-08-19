@@ -1,6 +1,6 @@
 # PostgreSQL
 
-You can install PostgreSQL through managed cloud services or by deploying it directly within a Kubernetes cluster. You can also opt to use an existing PostgreSQL instance outside of the Kubernetes cluster that runs Seldon Enterprise Platform.
+You can install PostgreSQL through [managed cloud services](managed-postgresql.md) or by deploying it [directly within a Kubernetes cluster](self-hosted-postgresql.md). You can also opt to use an existing PostgreSQL instance outside of the Kubernetes cluster that runs Seldon Enterprise Platform.
 
 
 
