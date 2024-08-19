@@ -6,7 +6,7 @@ description: >-
 
 # Managed PostgreSQL
 
-You can connect a managed PostgreSQL service in AWS RDS and Google Cloud SQL with Seldon Enterprise Platform. After you have a running PostgreSQL instance, with a database and a user created, you can configure Seldon Enterprise Platform by adding the `metadata-postgres` secret. 
+You can connect a managed PostgreSQL service in [AWS RDS](./#amazon-rds) and [Google Cloud SQL](./#cloud-sql-for-postgresql) with Seldon Enterprise Platform. After you have a running PostgreSQL instance, with a database and a user created, you can configure Seldon Enterprise Platform by adding the `metadata-postgres` secret.
 
 ## Prerequisites
 
@@ -53,6 +53,7 @@ kubectl create secret tls -n seldon-system postgres-client-certs\
 \--dry-run=client -o yaml\
 \| kubectl apply -n seldon-system -f -
 ```
+
 Finally, update the `install-values.yaml` file.
 
 ```
