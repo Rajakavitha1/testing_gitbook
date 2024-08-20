@@ -69,7 +69,8 @@ You can run PostgreSQL in the same Kubernetes cluster that hosts the Seldon Ente
     If you would like to install a more complex setup with additional users, databases, replicas, and others see the [official documentation](https://postgres-operator.readthedocs.io/en/latest/) of Zalando operator.
 1. Verify if the `postgres-operator` Pod is running.
 
-   ```kubectl --namespace=postgres get pods -l "app.kubernetes.io/name=postgres-operator"
+   ```bash
+   kubectl --namespace=postgres get pods -l "app.kubernetes.io/name=postgres-operator"
    ```
 1.  Create the required secret using the auto-generated password:
 
