@@ -1,4 +1,4 @@
-# Observability and Alerting
+#  Monitoring and Alerting
 
 
 Kube-Prometheus-stack, also as Prometheus Operator, is a popular open-source project that provides complete monitoring and alerting solutions for Kubernetes clusters. It combines tools and components to create a monitoring stack for Kubernetes environments.
