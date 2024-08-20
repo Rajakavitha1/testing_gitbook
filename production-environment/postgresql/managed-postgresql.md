@@ -34,7 +34,7 @@ To configure a PostgreSQL database with Seldon Enterprise Platform:
     {% hint style="info" %}
     **Note**: If you would like to configure PostgreSQL with SSL, see the [SSL Support section](managed-postgresql.md#ssl-support).
     {% endhint %}
-2.  Add the following to your `install-values.yaml`file.
+1.  Add the following to your `install-values.yaml`file.
 
     ```
     metadata:
@@ -43,33 +43,32 @@ To configure a PostgreSQL database with Seldon Enterprise Platform:
        secret: metadata-postgres
        clientTLSSecret: "postgres-client-certs"  # Optional, only needed for SSL verification
     ```
-3.  Change to the directory that contains the `install-values.yaml` file and then upgrade the Seldon Enterprise Platform installation in the namespace `seldon-system`.
+1.  Change to the directory that contains the `install-values.yaml` file and then upgrade the Seldon Enterprise Platform installation in the namespace `seldon-system`.
 
     ```
     helm upgrade seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f install-values.yaml --version 2.3.1 --install
     ```
-4.  Check the status of the installation seldon-enterprise-seldon-deploy.
+1.  Check the status of the installation seldon-enterprise-seldon-deploy.
 
     ```
     kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
     ```
-
     When the installation is complete you should see this:
 
     ```
     deployment "seldon-enterprise-seldon-deploy" successfully rolled out
     ```
-5.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
+1.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
 
     ```
     export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
     ```
-6.  You can use port-forwarding to access your application locally.
+1.  You can use port-forwarding to access your application locally.
 
     ```
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
-7. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
+1. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
 
 ### SSL Support¶
 
