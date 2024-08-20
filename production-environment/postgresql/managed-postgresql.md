@@ -18,7 +18,6 @@ You can connect a managed PostgreSQL service in [AWS RDS](./#amazon-rds) and [Go
 To configure a PostgreSQL database with Seldon Enterprise Platform:
 
 1.  Execute the following after substituting the variables `<your_user>`, `<your_password>`,`<metadata>`, and `<your.postgres.host>` with those from your database:
-
     ```
     kubectl create secret generic -n seldon-system metadata-postgres \
       --from-literal=user=<your_user> \
@@ -35,7 +34,6 @@ To configure a PostgreSQL database with Seldon Enterprise Platform:
     **Note**: If you would like to configure PostgreSQL with SSL, see the [SSL Support section](managed-postgresql.md#ssl-support).
     {% endhint %}
 1.  Add the following to your `install-values.yaml`file.
-
     ```
     metadata:
       pg:
