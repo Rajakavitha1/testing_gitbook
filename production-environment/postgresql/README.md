@@ -1,6 +1,22 @@
 # Model Catalog
 
-You can install PostgreSQL through [managed cloud services](managed-postgresql.md) or by deploying it [directly within a Kubernetes cluster](self-hosted-postgresql.md). You can also opt to use an existing PostgreSQL instance outside of the Kubernetes cluster that runs Seldon Enterprise Platform.
+The Model Catalog feature of the Seldon Enterprise Platform provides a centralized repository for managing, organizing, and accessing machine learning models within your organization. This feature helps you to:
+
+* Store and version models: track different versions of models, ensuring that you can manage updates and rollbacks efficiently.
+
+* Manage metadata: attach and manage metadata associated with each model, such as descriptions, performance metrics, and other relevant details.
+
+* Search and discover: find and view models based on various attributes, such as tags, metadata, or model performance.
+
+* Manage Model lifecycle : integrate with CI/CD pipelines to manage the lifecycle of models from development to deployment, monitoring, and updating.
+
+* Control access: define who can access, modify, or deploy models, ensuring that only authorized personnel can manage the models.
+
+* Integrate with Deployment: seamlessly integrate models from the catalog into production environments, making it easier to deploy and monitor models in Seldon Enterprise Platform.
+
+Overall, the Model Catalog feature helps streamline the model management process, improve collaboration, and enhance the governance of machine learning models across the organization.
+
+To explore this feature of Seldon Enterprise Platform, you need PostgreSQL. Install PostgreSQL through [managed cloud services](managed-postgresql.md) or by deploying it [directly within a Kubernetes cluster](self-hosted-postgresql.md). You can also opt to use an existing PostgreSQL instance outside of the Kubernetes cluster that runs Seldon Enterprise Platform.
 
 
 
