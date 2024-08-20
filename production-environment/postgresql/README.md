@@ -8,11 +8,11 @@ The Model Catalog feature of the Seldon Enterprise Platform provides a centraliz
 
 * Search and discover: find and view models based on various attributes, such as tags, metadata, or model performance.
 
-* Manage Model lifecycle : integrate with CI/CD pipelines to manage the lifecycle of models from development to deployment, monitoring, and updating.
+* Manage model lifecycle : integrate with CI/CD pipelines to manage the lifecycle of models from development to deployment, monitoring, and updating.
 
 * Control access: define who can access, modify, or deploy models, ensuring that only authorized personnel can manage the models.
 
-* Integrate with Deployment: seamlessly integrate models from the catalog into production environments, making it easier to deploy and monitor models in Seldon Enterprise Platform.
+* Streamline deployment: effortlessly integrate models from the catalog into production environments, simplifying the deployment and monitoring of models within the Seldon Enterprise Platform..
 
 Overall, the Model Catalog feature helps streamline the model management process, improve collaboration, and enhance the governance of machine learning models across the organization.
 
