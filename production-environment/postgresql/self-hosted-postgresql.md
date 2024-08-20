@@ -127,4 +127,4 @@ You can run PostgreSQL in the same Kubernetes cluster that hosts the Seldon Ente
 
 ## Next
 
-You may explore the [Model Catalog](https://deploy.seldon.io/en/v2.3/contents/demos/general/model-catalog/index.html) function in Seldon Enterprise Platform.
+You may now explore the [Model Catalog](https://deploy.seldon.io/en/v2.3/contents/demos/general/model-catalog/index.html) function in Seldon Enterprise Platform.
