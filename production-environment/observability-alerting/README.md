@@ -2,7 +2,10 @@
 
 
 Kube-Prometheus-stack, also as Prometheus Operator, is a popular open-source project that provides complete monitoring and alerting solutions for Kubernetes clusters. It combines tools and components to create a monitoring stack for Kubernetes environments.
-Always install Prometheus within the same Kubernetes cluster as the Seldon Enterprise Platform.
+
+{% hint style="info" %}
+**Note**: Always install Prometheus within the same Kubernetes cluster as the Seldon Enterprise Platform.
+{% endhint %}
 
 Running a monitoring stack, such as Prometheus, outside of your Kubernetes cluster introduces several challenges:
 
