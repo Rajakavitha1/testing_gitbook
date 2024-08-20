@@ -21,16 +21,24 @@ You can run PostgreSQL in the same Kubernetes cluster that hosts the Seldon Ente
 ### Installing PostgreSQL in a Kubernetes cluster
 
 1. Clone the Zalando operator repository in your computer.
-   `git clone https://github.com/zalando/postgres-operator.git`
+   ```
+   git clone https://github.com/zalando/postgres-operator.git
+   ```
 
 1. Change to the `postgres-operator`directory.
-    `cd postgres-operator`
+   ```
+   cd postgres-operator
+   ```
 
 1. Create a namespace where you want to install PostgreSQL. For example the name space `postgres`:
-    `kubectl create namespace postgres || echo "namespace postgres exists"`
+   ```
+   kubectl create namespace postgres || echo "namespace postgres exists"
+   ```
 
 1. Install PostgreSQL using the Helm charts.
-   `helm install postgres-operator ./charts/postgres-operator --namespace   postgres`
+   ```
+   helm install postgres-operator ./charts/postgres-operator --namespace   postgres
+   ```
    After a successful installation, you should see::
    ```
    NAME: postgres-operator 
