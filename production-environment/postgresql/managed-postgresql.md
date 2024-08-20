@@ -101,3 +101,7 @@ kubectl create secret tls -n seldon-system postgres-client-certs\
 \--dry-run=client -o yaml\
 \| kubectl apply -n seldon-system -f -
 ```
+
+## Next
+
+You may now to explore the [Model Catalog](https://deploy.seldon.io/en/v2.3/contents/demos/general/model-catalog/index.html) function in Seldon Enterprise Platform.

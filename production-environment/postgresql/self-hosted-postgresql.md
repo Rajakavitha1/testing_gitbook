@@ -120,3 +120,7 @@ You can run PostgreSQL in the same Kubernetes cluster that hosts the Seldon Ente
     kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
     ```
 1. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.    
+
+## Next
+
+You may now to explore the [Model Catalog](https://deploy.seldon.io/en/v2.3/contents/demos/general/model-catalog/index.html) function in Seldon Enterprise Platform.
