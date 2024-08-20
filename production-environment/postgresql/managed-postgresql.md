@@ -77,7 +77,7 @@ By default, Seldon Enterprise Platform does not perform any verification of the 
 
 
 
-&#x20;Execute the following after substituting the variables `<your_user>`, `<your_password>`,`<metadata>`, and `<your.postgres.host>` with those from your database:
+Execute the following after substituting the variables `<your_user>`, `<your_password>`,`<metadata>`, and `<your.postgres.host>` with those from your database:
 
 ```
 kubectl create secret generic -n seldon-system metadata-postgres \
