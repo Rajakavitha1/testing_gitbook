@@ -26,5 +26,5 @@ Ensure that the instance is accessible from Seldon Enterprise Platform. If using
 #### Additional Resources
 
 * [AWS RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html)
-* [Cloud SQL for PostgreSQL](https://cloud.google.com/sql/docs/postgres) Documentation.
+* [Cloud SQL for PostgreSQL Documentation](https://cloud.google.com/sql/docs/postgres).
 
