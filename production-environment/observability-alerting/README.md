@@ -1,5 +1,21 @@
 # Monitoring and Alerting
 
+The monitoring and alerting features of the Seldon Enterprise Platform provide robust tools for tracking the performance and health of machine learning models in production.
+
+## Monitoring
+* Real-Time metrics: collects and displays real-time metrics from deployed models, such as response times, error rates, and resource usage.
+* Model performance tracking: monitors key performance indicators (KPIs) like accuracy, drift detection, and model degradation over time.
+* Custom metrics: allows you to define and track custom metrics specific to their models and use cases.
+* Visualization: Provides dashboards and visualizations to easily observe the status and performance of models.
+
+## Alerting:
+* Proactive notifications: sends alerts when specific thresholds or conditions are met, such as a sudden drop in model accuracy or an increase in response latency.
+* Integration with alertmanager: leverages alertmanager to manage and route alerts to appropriate channels, such as email, Slack, or other communication tools.
+* Service Level Objectives (SLOs): alerts are triggered based on SLO breaches, ensuring that any critical issues in model performance or infrastructure are promptly addressed.
+* Automated response: supports automated responses to alerts, such as scaling resources or triggering workflows to retrain a model.
+
+Together, these features ensure that models running in production are performing as expected and that any issues are quickly identified and addressed to maintain the reliability and effectiveness of the machine learning deployments.
+
 `kube-prometheus-stack`, also known as Prometheus Operator, is a popular open-source project that provides complete monitoring and alerting solutions for Kubernetes clusters. It combines tools and components to create a monitoring stack for Kubernetes environments.
 
 {% hint style="info" %}
@@ -14,8 +30,5 @@ Running a monitoring stack, such as Prometheus, outside of your Kubernetes clust
 * Bidirectional access: Prometheus requires access to in-cluster resources, and the Seldon Enterprise Platform also needs to access Prometheus to query metrics. Facilitating this bidirectional flow of traffic may require additional network and security configurations.
 * Reliability concerns: Scraping metrics from outside the cluster can be less reliable than from within, potentially leading to lost data and false-positive alerts.
 
-The Seldon Enterprise Platform, along with any deployed models, automatically exposes metrics to Prometheus. By default, certain alerting rules are pre-configured, and an Alertmanager instance is included.
 
-Alertmanager notifies the Enterprise Platform frontend whenever an SLO (Service Level Objective) is breached within the platform infrastructure or a deployed model. The Enterprise Platform also features an alerts page where all currently active alerts can be viewed.
-
-For a hands-on experience, you can explore the alerting functionality through the [alerting demo](./) after installating [monitoring](observability.md) and [alterting](alerting.md) components of Seldon Enterprise Platform.
+For a hands-on experience, you can explore the alerting functionality through the [alerting demo](./) after installating [monitoring](observability.md) and [alerting](alerting.md) components of Seldon Enterprise Platform.

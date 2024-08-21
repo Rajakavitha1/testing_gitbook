@@ -1,10 +1,11 @@
 ---
 description: >-
-  Installing Kube-Prometheus-stack in the same Kubernetes cluster that hosts the Seldon
-  Enterprise Platform.
+  Installing kube-prometheus-stack in the same Kubernetes cluster that hosts the Seldon Enterprise Platform.
 ---
 
-# Observability
+# Monitoring
+
+The Seldon Enterprise Platform, along with any deployed models, automatically exposes metrics to Prometheus. By default, certain alerting rules are pre-configured, and an alertmanager instance is included.
 
 You can install `kube-prometheus` to monitor Seldon components, and ensure that the appropriate `ServiceMonitors` are in place for Seldon deployments. The analytics component is configured with the Prometheus integration. The monitoring for Seldon Enterprise Platform is based on the Prometheus Operator and the related `PodMonitor` and `PrometheusRule` resources. 
 
@@ -14,4 +15,4 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
 2. Install [Ingress Controller](../ingress-controller/).
 3. Install [Docker](https://docs.docker.com/engine/install/)
 
-## Installing Kube-
+## Installing kube-prometheus
