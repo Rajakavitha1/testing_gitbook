@@ -39,7 +39,7 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
    kubectl create ns seldon-monitoring || echo "Namespace seldon-monitoring already exists"
    ```
 1. Create a YAML file to specify the initial configuration. For example, create the `prometheus-values` file. Use your preferred text editor to create and save the file with the following content: 
-   ```
+   ```yaml
    fullnameOverride: seldon-monitoring
    kube-state-metrics:
      extraArgs:
