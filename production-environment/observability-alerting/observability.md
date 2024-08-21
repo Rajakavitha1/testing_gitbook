@@ -46,10 +46,9 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
      extraArgs:
        metric-labels-allowlist: pods=[*]
     ```
-   {% hint style="info" %}
-   **Note**: The `metric-labels-allowlist: pods=[*]` in the `prometheus-values` file are used to compute the deployment usage rules. If you are installing any other Prometheus Operator, ensure that pods labels, especially the `app.kubernetes.io/managed-by=seldon-core`, are included in the collected metrics as they are used to compute deployment usage rules.
-   {% endhint %}
-   
+      {% hint style="info" %}
+      **Note**: The `metric-labels-allowlist: pods=[*]` in the `prometheus-values` file are used to compute the deployment usage rules. If you are installing any other Prometheus Operator, ensure that pods labels, especially the `app.kubernetes.io/managed-by=seldon-core`, are included in the collected metrics as they are used to compute deployment usage rules.
+      {% endhint %}   
 1. Change to the directory that contains the `prometheus-values` file and run the following command to install version `9.5.12` of `kube-prometheus`. 
    ```
    helm upgrade --install prometheus kube-prometheus \
