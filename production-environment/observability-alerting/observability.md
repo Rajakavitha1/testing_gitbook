@@ -23,7 +23,7 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
 
 ## Installing kube-prometheus
 
-1. Download the `seldon-deploy-install.tar` file that contains required installation resources.
+1. Download the `seldon-deploy-install.tar` file that contains required installation resources. For example, to download the installation resources for version `2.3.1` of Seldon Enterprise Platform run the following:
    ```
    TAG=2.3.1 && \
     docker create --name=tmp-sd-container seldonio/seldon-deploy-server:2.3.1 && \
@@ -34,3 +34,117 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
    ```
    tar -xzf seldon-deploy-install.tar.gz
    ```
+1. Create a namespace for the monitoring components of Seldon Enterprise Platform.
+   ```
+   kubectl create ns seldon-monitoring || echo "Namespace seldon-monitoring already exists"
+   ```
+1. Create a YAML file to specify the initial configuration. For example, create the `prometheus-values` file. Use your preferred text editor to create and save the file with the following content:
+
+    ```yaml
+    fullnameOverride: seldon-monitoring
+    kube-state-metrics:
+     extraArgs:
+       metric-labels-allowlist: pods=[*]
+    ```
+   <br>
+   {% hint style="info" %}
+   **Note**: The `metric-labels-allowlist: pods=[*]` in the `prometheus-values` file are used to compute the deployment usage rules. If you are installing any other Prometheus Operator, ensure that pods labels, especially the `app.kubernetes.io/managed-by=seldon-core`, are included in the collected metrics as they are used to compute deployment usage rules.
+   {% endhint %}
+1. Change to the directory that contains the `prometheus-values` file and run the following command to install version `9.5.12` of `kube-prometheus`. 
+   ```
+   helm upgrade --install prometheus kube-prometheus \
+    --version 9.5.12 \
+    --namespace seldon-monitoring \
+    --values prometheus-values.yaml \
+    --repo https://charts.bitnami.com/bitnami
+    ```
+   When the installation is complete, you should see this:
+   ```
+   Release "prometheus" does not exist. Installing it now.
+   NAME: prometheus
+   LAST DEPLOYED: Mon Aug 19 17:11:52 2024
+   NAMESPACE: seldon-monitoring
+   STATUS: deployed
+   REVISION: 1
+   TEST SUITE: None
+   NOTES:
+   CHART NAME: kube-prometheus
+   CHART VERSION: 9.5.12
+   APP VERSION: 0.76.0
+
+   ** Please be patient while the chart is being deployed **
+
+   Watch the Prometheus Operator Deployment status using the command:
+
+       kubectl get deploy -w --namespace seldon-monitoring -l app.kubernetes.io/name=kube-prometheus-operator,app.kubernetes.io/instance=prometheus
+
+   Watch the Prometheus StatefulSet status using the command:
+
+    kubectl get sts -w --namespace seldon-monitoring -l app.kubernetes.io/name=kube-prometheus-prometheus,app.kubernetes.io/instance=prometheus
+
+   Prometheus can be accessed via port "9090" on the following DNS name from within your cluster:
+
+       seldon-monitoring-prometheus.seldon-monitoring.svc.cluster.local
+
+   To access Prometheus from outside the cluster execute the following commands:
+
+       echo "Prometheus URL: http://127.0.0.1:9090/"
+       kubectl port-forward --namespace seldon-monitoring svc/seldon-monitoring-prometheus 9090:9090
+
+   Watch the Alertmanager StatefulSet status using the command:
+
+       kubectl get sts -w --namespace seldon-monitoring -l app.kubernetes.io/name=kube-prometheus-alertmanager,app.kubernetes.io/instance=prometheus
+
+   Alertmanager can be accessed via port "9093" on the following DNS name from within your cluster:
+
+       seldon-monitoring-alertmanager.seldon-monitoring.svc.cluster.local
+
+   To access Alertmanager from outside the cluster execute the following commands:
+
+       echo "Alertmanager URL: http://127.0.0.1:9093/"
+       kubectl port-forward --namespace seldon-monitoring svc/seldon-monitoring-alertmanager 9093:9093
+
+   WARNING: There are "resources" sections in the chart not set. Using "resourcesPreset" is not recommended for production. For production installations, please set the following values according to your workload needs:
+     - alertmanager.resources
+     - blackboxExporter.resources
+     - operator.resources
+     - prometheus.resources
+     - prometheus.thanos.resources
+   +info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+
+   ```
+1. Check the status of the installation.
+   ```
+   kubectl rollout status -n seldon-monitoring deployment/seldon-monitoring-operator
+   ```
+   When the installation is complete, you should see this:
+   ```
+   Waiting for deployment "seldon-monitoring-operator" rollout to finish: 0 of 1 updated replicas are available...
+   deployment "seldon-monitoring-operator" successfully rolled out
+   ```
+1. To configure monitoring create a dedicated `PodMonitor` and `PrometheusRule` resources. Copy the installation resource files from the `seldon-deploy-install/reference-configuration/metrics/` directory to the current directory.
+   ```
+   cp seldon-deploy-install/reference-configuration/metrics/seldon-monitor.yaml seldon-monitor.yaml
+   cp seldon-deploy-install/reference-configuration/metrics/drift-monitor.yaml drift-monitor.yaml
+   cp seldon-deploy-install/reference-configuration/metrics/deploy-monitor.yaml deploy-monitor.yaml
+   cp seldon-deploy-install/reference-configuration/metrics/metrics-server-monitor.yaml metrics-server-monitor.yaml
+   cp seldon-deploy-install/reference-configuration/metrics/deployment-usage-rules.yaml deployment-usage-rules.yaml
+   ```
+1. Apply the configurations to the Kubernetes cluster that is running the Seldon Enterprise Platform.
+   ```
+   kubectl apply -n seldon-monitoring -f seldon-monitor.yaml
+   kubectl apply -n seldon-monitoring -f drift-monitor.yaml
+   kubectl apply -n seldon-monitoring -f deploy-monitor.yaml
+   kubectl apply -n seldon-monitoring -f metrics-server-monitor.yaml
+   kubectl apply -f deployment-usage-rules.yaml -n seldon-monitoring
+   ```
+   When the configuration is complete, you should see this:
+   ```
+   podmonitor.monitoring.coreos.com/seldon-core created
+   podmonitor.monitoring.coreos.com/seldon-drift-detector created
+   podmonitor.monitoring.coreos.com/seldon-deploy created
+   podmonitor.monitoring.coreos.com/metrics-server created
+   prometheusrule.monitoring.coreos.com/seldon-deployment-usage-rules created
+   ```
+      
+
