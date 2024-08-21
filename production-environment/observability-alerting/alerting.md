@@ -8,6 +8,10 @@ description: >-
 
 The Seldon Enterprise Platform, along with any deployed models, automatically exposes metrics to Prometheus. By default, certain alerting rules are pre-configured, and an alertmanager instance is included.
 
+You can configure Alertmanager to send alerts through email or Slack. It can also be integrated into an incident response tool. To receive alerts when using Seldon Enterprise Platform you need to:
+1. Configure alerts
+2. Integrate into an incident response
+
 ## Prerequisites
 
 1. Install [Seldon Enterprise Platform](../seldon-enterprise-platform.md).
@@ -16,7 +20,7 @@ The Seldon Enterprise Platform, along with any deployed models, automatically ex
 
 ## Configuring alerts in Seldon Enterprise Manager
 
-1.  To configure default alerting rules, copy the installation resource files from the `seldon-deploy-install/reference-configuration/metrics/` directory to the current directory.
+1.  To configure default alerting rules, copy the installation resource files from the `seldon-deploy-install/reference-configuration/metrics/` directory to the current directory. To configure custom alerts, see the custom alerts section.
 
     ```
      cp seldon-deploy-install/reference-configuration/metrics/user-alerts.yaml user-alerts.yaml
@@ -64,7 +68,7 @@ The Seldon Enterprise Platform, along with any deployed models, automatically ex
                 - severity =~ "warning|critical"
                 - type =~ "user|infra"
         ```
-    ````
+    For more information about configuring alerts during authetication, see Authentication alerts section.
 4.  Apply the Altermanager configurations in the Kubernetes cluster that is running Seldon Enterprise Platform:
 
     ```
@@ -106,6 +110,24 @@ You can also define your own custom alerting rules in Prometheus.
     ```
     kubectl create -f custom-alert.yaml
     ```
+ ### Authentication alerts
+
+ * If you are using App Level Authentication you need to add `http_config` in the `webhook_configs` section of `alertmanager.yaml`. This needs a client that has been configured to access the [Seldon Enterprise Platform API](https://deploy.seldon.io/en/v2.3/contents/product-tour/api/index.html#authentication). The token_url value may vary, depending on your OIDC provider.
+ ```yaml
+    webhook_configs:
+      - url: "http://seldon-deploy.seldon-system:80/seldon-deploy/api/v1alpha1/webhooks/firing-alert"
+        http_config:
+          oauth2:
+            client_id: "${OIDC_CLIENT_ID}"
+            client_secret: "${OIDC_CLIENT_SECRET}"
+            scopes: [openid]
+            token_url: "${OIDC_HOST}/auth/realms/${OIDC_REALM}/protocol/openid-connect/token"
+            # Note: only needed if using a self-signed certificate on your OIDC provider
+            tls_config:
+              insecure_skip_verify: true
+ ```
+* If you are using a self-signed certificate on your OIDC provider then you need to set `insecure_skip_verify` in the `tls_config` of the `oauth2` block. Alternatively, you can mount your CA certificate onto the Alertmanager instance to validate the server certificate using `ca_file`. For more information see, the [Prometheus documentation](https://prometheus.io/docs/alerting/latest/configuration/#tls_config).   
+
 
 ## Next
 
