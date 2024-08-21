@@ -45,13 +45,7 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
     kube-state-metrics:
      extraArgs:
        metric-labels-allowlist: pods=[*]
-    ```
-   \ 
-
-      {% hint style="info" %}
-      **Note**: The `metric-labels-allowlist: pods=[*]` in the `prometheus-values` file are used to compute the deployment usage rules. If you are installing any other Prometheus Operator, ensure that pods labels, especially the `app.kubernetes.io/managed-by=seldon-core`, are included in the collected metrics as they are used to compute deployment usage rules.
-      {% endhint %} 
-      
+    ```      
 1. Change to the directory that contains the `prometheus-values` file and run the following command to install version `9.5.12` of `kube-prometheus`. 
    ```
    helm upgrade --install prometheus kube-prometheus \
@@ -62,50 +56,6 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
     ```
    When the installation is complete, you should see this:
    ```
-   Release "prometheus" does not exist. Installing it now.
-   NAME: prometheus
-   LAST DEPLOYED: Mon Aug 19 17:11:52 2024
-   NAMESPACE: seldon-monitoring
-   STATUS: deployed
-   REVISION: 1
-   TEST SUITE: None
-   NOTES:
-   CHART NAME: kube-prometheus
-   CHART VERSION: 9.5.12
-   APP VERSION: 0.76.0
-
-   ** Please be patient while the chart is being deployed **
-
-   Watch the Prometheus Operator Deployment status using the command:
-
-       kubectl get deploy -w --namespace seldon-monitoring -l app.kubernetes.io/name=kube-prometheus-operator,app.kubernetes.io/instance=prometheus
-
-   Watch the Prometheus StatefulSet status using the command:
-
-    kubectl get sts -w --namespace seldon-monitoring -l app.kubernetes.io/name=kube-prometheus-prometheus,app.kubernetes.io/instance=prometheus
-
-   Prometheus can be accessed via port "9090" on the following DNS name from within your cluster:
-
-       seldon-monitoring-prometheus.seldon-monitoring.svc.cluster.local
-
-   To access Prometheus from outside the cluster execute the following commands:
-
-       echo "Prometheus URL: http://127.0.0.1:9090/"
-       kubectl port-forward --namespace seldon-monitoring svc/seldon-monitoring-prometheus 9090:9090
-
-   Watch the Alertmanager StatefulSet status using the command:
-
-       kubectl get sts -w --namespace seldon-monitoring -l app.kubernetes.io/name=kube-prometheus-alertmanager,app.kubernetes.io/instance=prometheus
-
-   Alertmanager can be accessed via port "9093" on the following DNS name from within your cluster:
-
-       seldon-monitoring-alertmanager.seldon-monitoring.svc.cluster.local
-
-   To access Alertmanager from outside the cluster execute the following commands:
-
-       echo "Alertmanager URL: http://127.0.0.1:9093/"
-       kubectl port-forward --namespace seldon-monitoring svc/seldon-monitoring-alertmanager 9093:9093
-
    WARNING: There are "resources" sections in the chart not set. Using "resourcesPreset" is not recommended for production. For production installations, please set the following values according to your workload needs:
      - alertmanager.resources
      - blackboxExporter.resources
@@ -148,5 +98,57 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
    podmonitor.monitoring.coreos.com/metrics-server created
    prometheusrule.monitoring.coreos.com/seldon-deployment-usage-rules created
    ```
+1. You can access Prometheus from outside the cluster by running the following commands:
+
+    ```
+    echo "Prometheus URL: http://127.0.0.1:9090/"
+    kubectl port-forward --namespace seldon-monitoring svc/seldon-monitoring-prometheus 9090:9090
+    ```
+
+1. You can access Alertmanager from outside the cluster by running the following commands:
+
+    ```
+    echo "Alertmanager URL: http://127.0.0.1:9093/"
+    kubectl port-forward --namespace seldon-monitoring svc/seldon-monitoring-alertmanager 9093:9093
+    ```
+1. Add the following to your `install-values.yaml`file.
+    ```
+    prometheus:
+     seldon:
+       namespaceMetricName: namespace
+       activeModelsNamespaceMetricName: exported_namespace
+       serviceMetricName: service
+       url: http://seldon-monitoring-prometheus.seldon-monitoring:9090/api/v1/
+   ```
+1.  Change to the directory that contains the `install-values.yaml` file and then upgrade the Seldon Enterprise Platform installation in the namespace `seldon-system`.
+
+    ```
+    helm upgrade seldon-enterprise seldon-charts/seldon-deploy --namespace seldon-system  -f install-values.yaml --version 2.3.1 --install
+    ```
+1.  Check the status of the installation seldon-enterprise-seldon-deploy.
+
+    ```
+    kubectl rollout status deployment/seldon-enterprise-seldon-deploy -n seldon-system
+    ```
+
+    When the installation is complete you should see this:
+
+    ```
+    deployment "seldon-enterprise-seldon-deploy" successfully rolled out
+    ```
+1.  Get the Pod that is running Seldon Enterprise Platform in the cluster and save it as `$POD_NAME`.
+
+    ```
+    export POD_NAME=$(kubectl get pods --namespace seldon-system -l "app.kubernetes.io/name=seldon-deploy,app.kubernetes.io/instance=seldon-enterprise" -o jsonpath="{.items[0].metadata.name}")
+    ```
+1.  You can use port-forwarding to access your application locally.
+
+    ```
+    kubectl port-forward $POD_NAME 8000:8000 --namespace seldon-system
+    ```
+1. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
+
+## Next
+You may now explore the [Usage Monitor](https://deploy.seldon.io/en/v2.3/contents/operations/usage-monitoring/index.html) feature in Seldon Enterprise Platform.
       
 
