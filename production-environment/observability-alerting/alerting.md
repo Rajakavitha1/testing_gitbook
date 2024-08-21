@@ -113,7 +113,7 @@ You can also define your own custom alerting rules in Prometheus.
  ### Authentication alerts
 
  * If you are using App Level Authentication you need to add `http_config` in the `webhook_configs` section of `alertmanager.yaml`. This needs a client that has been configured to access the [Seldon Enterprise Platform API](https://deploy.seldon.io/en/v2.3/contents/product-tour/api/index.html#authentication). The token_url value may vary, depending on your OIDC provider.
- ```yaml
+  ```yaml
     webhook_configs:
       - url: "http://seldon-deploy.seldon-system:80/seldon-deploy/api/v1alpha1/webhooks/firing-alert"
         http_config:
@@ -125,7 +125,7 @@ You can also define your own custom alerting rules in Prometheus.
             # Note: only needed if using a self-signed certificate on your OIDC provider
             tls_config:
               insecure_skip_verify: true
- ```
+  ```
 * If you are using a self-signed certificate on your OIDC provider then you need to set `insecure_skip_verify` in the `tls_config` of the `oauth2` block. Alternatively, you can mount your CA certificate onto the Alertmanager instance to validate the server certificate using `ca_file`. For more information see, the [Prometheus documentation](https://prometheus.io/docs/alerting/latest/configuration/#tls_config).   
 
 
