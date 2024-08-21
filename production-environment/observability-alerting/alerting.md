@@ -44,7 +44,7 @@ You can configure Alertmanager to send alerts through email or Slack. It can als
     ```
 3.  Create a YAML file to specify the initial configuration. For example, create the `alertmanager.yaml` file. Use your preferred text editor to create and save the file with the following content:
 
-    ````
+    ```yaml
     kind: Secret
     apiVersion: v1
     metadata:
@@ -67,7 +67,7 @@ You can configure Alertmanager to send alerts through email or Slack. It can als
               matchers:
                 - severity =~ "warning|critical"
                 - type =~ "user|infra"
-        ```
+      ```
     For more information about configuring alerts during authetication, see Authentication alerts section.
 4.  Apply the Altermanager configurations in the Kubernetes cluster that is running Seldon Enterprise Platform:
 
