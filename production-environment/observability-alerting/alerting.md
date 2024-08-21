@@ -12,15 +12,14 @@ The Seldon Enterprise Platform, along with any deployed models, automatically ex
 
 1. Install [Seldon Enterprise Platform](../seldon-enterprise-platform.md).
 2. Install [Ingress Controller](../ingress-controller/).
-3. Install [Docker](https://docs.docker.com/engine/install/)
-4. Install [kube-prometheus](observability.md#installing-kube-prometheus)
+3. Install [kube-prometheus](observability.md#installing-kube-prometheus)
 
 ## Configuring alerts in Seldon Enterprise Manager
 
 1.  To configure default alerting rules, copy the installation resource files from the `seldon-deploy-install/reference-configuration/metrics/` directory to the current directory.
 
     ```
-    cp seldon-deploy-install/reference-configuration/metrics/user-alerts.yaml user-alerts.yaml
+     cp seldon-deploy-install/reference-configuration/metrics/user-alerts.yaml user-alerts.yaml
      cp seldon-deploy-install/reference-configuration/metrics/infra-alerts.yaml infra-alerts.yaml
      cp seldon-deploy-install/reference-configuration/metrics/drift-alerts.yaml drift-alerts.yaml
     ```
