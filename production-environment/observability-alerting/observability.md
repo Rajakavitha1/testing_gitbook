@@ -15,6 +15,10 @@ The Seldon Enterprise Platform, along with any deployed models, automatically ex
 
 You can install `kube-prometheus` to monitor Seldon components, and ensure that the appropriate `ServiceMonitors` are in place for Seldon deployments. The analytics component is configured with the Prometheus integration. The monitoring for Seldon Enterprise Platform is based on the Prometheus Operator and the related `PodMonitor` and `PrometheusRule` resources. 
 
+Monitoring the model deployments in Seldon Enterprise Platform involves:
+1. Installing kube-prometheus
+2. Configuring monitoring
+
 ## Prerequisites
 
 1. Install [Seldon Enterprise Platform](../seldon-enterprise-platform.md).
@@ -75,6 +79,8 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
    Waiting for deployment "seldon-monitoring-operator" rollout to finish: 0 of 1 updated replicas are available...
    deployment "seldon-monitoring-operator" successfully rolled out
    ```
+## Configuring monitoring for Seldon Enterprise Platform
+
 1. To configure monitoring create a dedicated `PodMonitor` and `PrometheusRule` resources. Copy the installation resource files from the `seldon-deploy-install/reference-configuration/metrics/` directory to the current directory.
    ```
    cp seldon-deploy-install/reference-configuration/metrics/seldon-monitor.yaml seldon-monitor.yaml
