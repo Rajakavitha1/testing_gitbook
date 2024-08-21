@@ -29,7 +29,7 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
     docker create --name=tmp-sd-container seldonio/seldon-deploy-server:2.3.1 && \
     docker cp tmp-sd-container:/seldon-deploy-dist/seldon-deploy-install.tar.gz . && \
     docker rm -v tmp-sd-container
-  ```
+   ```
 1. Extract the contents of the `seldon-deploy-install.tar` file.
    ```
    tar -xzf seldon-deploy-install.tar.gz
