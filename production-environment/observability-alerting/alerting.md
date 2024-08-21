@@ -100,7 +100,7 @@ You can configure Alertmanager to send alerts through email or Slack. It can als
     ```
 8. Open your browser and navigate to `http://127.0.0.1:8000/seldon-deploy/` to access Seldon Enterprise Platform.
 
-### Custom alerts¶
+### Custom alerts
 
 You can also define your own custom alerting rules in Prometheus.
 
