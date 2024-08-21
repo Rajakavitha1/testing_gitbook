@@ -22,3 +22,15 @@ You can install `kube-prometheus` to monitor Seldon components, and ensure that 
 3. Install [Docker](https://docs.docker.com/engine/install/)
 
 ## Installing kube-prometheus
+
+1. Download the `seldon-deploy-install.tar` file that contains required installation resources.
+   ```
+   TAG=2.3.1 && \
+    docker create --name=tmp-sd-container seldonio/seldon-deploy-server:2.3.1 && \
+    docker cp tmp-sd-container:/seldon-deploy-dist/seldon-deploy-install.tar.gz . && \
+    docker rm -v tmp-sd-container
+  ```
+1. Extract the contents of the `seldon-deploy-install.tar` file.
+   ```
+   tar -xzf seldon-deploy-install.tar.gz
+   ```
