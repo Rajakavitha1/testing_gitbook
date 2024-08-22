@@ -17,8 +17,8 @@ This table lists the minimum resource requirements for clusters running the full
 
 1. [Seldon Enterprise Platform](seldon-enterprise-platform.md)
 2. [Ingress Controller](ingress-controller/)
-3. [PostgreSQL](postgresql/)
-4. Observability and Alerting with Prometheus
+3. [PostgreSQL - Model Catalog](postgresql/)
+4. [Prometheus - Monitoring and Alerting](observability-alerting/)
 5. Seldon Core v2 & Kafka integration
 6. Elasticsearch / OpenSearch
 7. ML data and events logging with Elasticsearch
