@@ -176,4 +176,4 @@ Monitoring the model deployments in Seldon Enterprise Platform involves:
 
 ## Next
 
-You may now explore the [Usage Monitor](https://deploy.seldon.io/en/v2.3/contents/operations/usage-monitoring/index.html) feature in Seldon Enterprise Platform.
+You may now configure [Alerting](../observability-alerting/alerting.md) feature in Seldon Enterprise Platform.
